@@ -430,10 +430,7 @@ function TeamsListPage() {
 const activeDivisions = DIVISION_ORDER.filter(
   (d) => d !== 'Relegated' && teams.some((t) => t.division === d)
 )
-
-  const champions = teams.filter((t) => t.championships > 0)
-
-  return (
+    return (
     <main style={{ background: '#fff' }}>
       {/* ── Page hero ── */}
       <section

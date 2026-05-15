@@ -571,27 +571,6 @@ function HomePage() {
   )
 }
 
-function RankingRow({ row, rank }: { row: Standing; rank: number }) {
-  const [hovered, setHovered] = useState(false)
-  const isTop3 = rank <= 3
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ display: 'grid', gridTemplateColumns: '48px 1fr 64px 64px 72px', alignItems: 'center', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', background: hovered ? '#f4f6fb' : '#fff', borderLeft: hovered ? '3px solid #C8102E' : '3px solid transparent', transition: 'all 0.15s ease' }}
-    >
-      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, color: isTop3 ? '#C8102E' : '#9ca3af' }}>{rank}</span>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <img src={row.logo} alt={row.team} style={{ width: 36, height: 36, objectFit: 'contain', background: '#f4f6fb', padding: 3 }} />
-        <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 17, color: '#111827', letterSpacing: '0.02em' }}>{row.team}</span>
-      </div>
-      <span style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 14, color: '#6b7280' }}>{row.tournaments}</span>
-      <span style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 14, color: '#6b7280' }}>{row.aggregate}</span>
-      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, color: isTop3 ? '#C8102E' : '#1a2a6e', textAlign: 'right' }}>{row.average}</span>
-    </div>
-  )
-}
-
 // ─── ARTICLES PAGE ─────────────────────────────────────────────────────────────
 function ArticlesPage() {
   return (
