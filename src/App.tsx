@@ -87,10 +87,8 @@ const articles: Article[] = [
     category: 'MML Deep Dive',
     tag: 'Historical Worst to First?',
     heroTeam: 'Yellow Fever',
-    summary:
-      'From the Honeysuckles era to a 2025 finals berth, Yellow Fever may be the leagues most fascinating rebuild.',
-    pullQuote:
-      '99 aggregate across six seasons. The math is unforgiving. The team keeps showing up anyway.',
+    summary: 'From the Honeysuckles era to a 2025 finals berth, Yellow Fever may be the leagues most fascinating rebuild.',
+    pullQuote: '99 aggregate across six seasons. The math is unforgiving. The team keeps showing up anyway.',
     content: [
       'They started life as the Honeysuckles. Or the Sucklers, depending on which early bracket you read. They finished last in Season 1 with 50 points. They finished 14th in Season 2 and 16th in Season 3.',
       'The name changed to Yellow Fever sometime before the New Age era. The results, mostly, did not. Across six seasons, Yellow Fever have the worst average placement of any team to compete in all six tournaments: 16.50. An aggregate of 99.',
@@ -104,10 +102,8 @@ const articles: Article[] = [
     category: 'MML Culture',
     tag: 'The People\'s Team',
     heroTeam: 'Orcas',
-    summary:
-      'Beloved, chaotic, and somehow always compelling, the Orcas prove the MML is not just about winning.',
-    pullQuote:
-      'Nobody cheers louder when the Orcas score a point. Nobody is less surprised when they do not.',
+    summary: 'Beloved, chaotic, and somehow always compelling, the Orcas prove the MML is not just about winning.',
+    pullQuote: 'Nobody cheers louder when the Orcas score a point. Nobody is less surprised when they do not.',
     content: [
       'There is a type of team that exists in every sport. They do not win often. Their stats do not hold up. Every season, logic says they should be competitive, and every season, something goes gloriously wrong. The MML has the Orcas.',
       'Six seasons. An average placement of 14.17. An aggregate score of 85 across all tournaments, worse than all but a handful of teams who have competed far fewer times.',
@@ -121,10 +117,8 @@ const articles: Article[] = [
     category: 'MML Analysis',
     tag: 'The Perennial Bridesmaid Problem',
     heroTeam: 'Trinitarians',
-    summary:
-      'Six seasons of elite consistency, repeated near-misses, and the most tortured fanbase in the sport.',
-    pullQuote:
-      'They are the most consistent team this league has ever produced. They are also its greatest what-if.',
+    summary: 'Six seasons of elite consistency, repeated near-misses, and the most tortured fanbase in the sport.',
+    pullQuote: 'They are the most consistent team this league has ever produced. They are also its greatest what-if.',
     content: [
       'The numbers are almost cruel. Trinitarians have competed in all six MML seasons. Their average placement is 5.50, second best in league history behind only HemoGoblins.',
       'Season 1: 8th. Season 2: 9th. Season 3: 3rd. Season 4: 5th. Season 5: 3rd again. Season 6: 5th in the finals, watching Sorbetbes hoist the trophy.',
@@ -139,10 +133,8 @@ const articles: Article[] = [
     tag: 'All-Time Rivalry Series',
     heroTeam: 'HemoGoblins',
     secondaryTeams: ['Angels', 'Deep Sky'],
-    summary:
-      'The league\'s defining rivalry has never needed two teams. It has always needed three.',
-    pullQuote:
-      'Deep Sky has never beaten HemoGoblins when it mattered. Angels finally did in 2023. That changes everything.',
+    summary: 'The league\'s defining rivalry has never needed two teams. It has always needed three.',
+    pullQuote: 'Deep Sky has never beaten HemoGoblins when it mattered. Angels finally did in 2023. That changes everything.',
     content: [
       'Most rivalries are between two teams. The MML\'s defining rivalry has always needed three. Angels, Deep Sky, and HemoGoblins have spent six seasons pushing each other, chasing each other, and occasionally breaking each other\'s hearts.',
       'HemoGoblins established dominance first. Angels were the perennial challengers. Deep Sky sat in the shadows, placing consistently until a 4th-place finish in Season 4 signaled they were ready to move up.',
@@ -156,10 +148,8 @@ const articles: Article[] = [
     category: 'MML Historical Review',
     tag: 'Seasons 1–4',
     heroTeam: 'HemoGoblins',
-    summary:
-      'Three titles, one shadow, and a dynasty that still defines every future MML contender.',
-    pullQuote:
-      'They were seeded 12th. Nobody saw it coming. Nobody.',
+    summary: 'Three titles, one shadow, and a dynasty that still defines every future MML contender.',
+    pullQuote: 'They were seeded 12th. Nobody saw it coming. Nobody.',
     content: [
       'When the Baldwin Invitational tipped off in 2016, nobody had HemoGoblins penciled in as the team to beat. They were seeded 12th, buried in the West Division, and facing an Angels squad that had looked dominant all week.',
       'They won anyway, posting 92 points, the highest individual score of the season, and walked away with the first championship in MML history.',
@@ -173,10 +163,8 @@ const articles: Article[] = [
     category: 'MML Legacy Series',
     tag: 'Longest Road to a Championship',
     heroTeam: 'Sorbetbes',
-    summary:
-      'Nine years, six seasons, a name change, and finally a championship that rewrote their history.',
-    pullQuote:
-      'The longest road to a championship in MML history ended not with a comeback, but with a statement.',
+    summary: 'Nine years, six seasons, a name change, and finally a championship that rewrote their history.',
+    pullQuote: 'The longest road to a championship in MML history ended not with a comeback, but with a statement.',
     content: [
       'They competed in the very first tournament. They finished 4th. They waited nine years. Then they won.',
       'In the summer of 2016, a team called the Broncos showed up to the Baldwin Invitational and immediately made their presence known. They finished 4th overall, the best debut of any team in the inaugural season.',
@@ -286,7 +274,7 @@ function HeroSlideshow() {
   return (
     <section
       className="relative overflow-hidden select-none"
-      style={{ background: theme.bg, minHeight: 500, transition: 'background 0.6s ease' }}
+      style={{ background: theme.bg, minHeight: 480, transition: 'background 0.6s ease', position: 'relative' }}
     >
       {/* ── Background stripes ── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -294,42 +282,37 @@ function HeroSlideshow() {
         <div style={{ position: 'absolute', width: '70%', height: '100%', background: theme.stripe2, transform: 'skewX(-18deg) translateX(-10%)', top: 0, left: '50%', opacity: 0.7, transition: 'background 0.6s ease' }} />
         <div style={{ position: 'absolute', width: 8, height: '130%', background: theme.accent, transform: 'skewX(-18deg)', top: '-15%', left: '48%', opacity: 0.9, transition: 'background 0.6s ease' }} />
         <div style={{ position: 'absolute', width: 3, height: '130%', background: theme.accentLight, transform: 'skewX(-18deg)', top: '-15%', left: '49.5%', opacity: 0.5, transition: 'background 0.6s ease' }} />
-        <div style={{ position: 'absolute', width: 4, height: '130%', background: theme.accent, transform: 'skewX(-18deg)', top: '-15%', left: '75%', opacity: 0.3, transition: 'background 0.6s ease' }} />
-        <div style={{ position: 'absolute', width: 2, height: '130%', background: theme.accentLight, transform: 'skewX(-18deg)', top: '-15%', left: '76%', opacity: 0.2, transition: 'background 0.6s ease' }} />
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: theme.accent, opacity: 0.6, transition: 'background 0.6s ease' }} />
         <img
           src={slide.teamName === 'MML' ? '/images/mml-logo.png' : getTeamLogo(slide.teamName)}
           alt="" aria-hidden="true"
-          style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', height: '110%', width: 'auto', objectFit: 'contain', opacity: animating ? 0 : 0.07, filter: 'grayscale(100%) brightness(2)', pointerEvents: 'none', transition: 'opacity 0.4s ease' }}
+          style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', height: '100%', width: 'auto', objectFit: 'contain', opacity: animating ? 0 : 0.07, filter: 'grayscale(100%) brightness(2)', pointerEvents: 'none', transition: 'opacity 0.4s ease' }}
         />
       </div>
 
       {/* ── Slide content ── */}
-      <div
-        className="relative z-10 max-w-7xl mx-auto px-6"
-        style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: '2rem', minHeight: 500, paddingTop: '4rem', paddingBottom: '3rem' }}
-      >
-        {/* Left: text */}
-        <div style={{ opacity: animating ? 0 : 1, transform: animating ? 'translateY(16px)' : 'translateY(0)', transition: 'opacity 0.3s ease, transform 0.3s ease', maxWidth: 560 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 20, background: 'rgba(255,255,255,0.06)', border: `1px solid ${theme.accent}44`, padding: '5px 14px 5px 10px' }}>
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: 1280, margin: '0 auto', padding: '3rem 1.5rem 4rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem', minHeight: 480 }}>
+        {/* Text */}
+        <div style={{ opacity: animating ? 0 : 1, transform: animating ? 'translateY(16px)' : 'translateY(0)', transition: 'opacity 0.3s ease, transform 0.3s ease', flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 16, background: 'rgba(255,255,255,0.06)', border: `1px solid ${theme.accent}44`, padding: '5px 14px 5px 10px' }}>
             <span style={{ display: 'block', width: 20, height: 2, background: theme.accent, flexShrink: 0 }} />
-            <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: theme.accent }}>
+            <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: theme.accent }}>
               {slide.kicker}
             </span>
           </div>
-          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(42px, 6vw, 76px)', lineHeight: 0.92, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '1.25rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
+          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(32px, 7vw, 76px)', lineHeight: 0.92, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.02em', marginBottom: '1rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
             {slide.headline}
           </h1>
-          <div style={{ width: 48, height: 3, background: theme.accent, marginBottom: '1.25rem' }} />
-          <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontWeight: 400, fontSize: 17, lineHeight: 1.65, color: theme.textMuted, maxWidth: 400, marginBottom: '2rem' }}>
+          <div style={{ width: 48, height: 3, background: theme.accent, marginBottom: '1rem' }} />
+          <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontWeight: 400, fontSize: 'clamp(14px, 2.5vw, 17px)', lineHeight: 1.6, color: theme.textMuted, marginBottom: '1.5rem', maxWidth: 420 }}>
             {slide.sub}
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
             <Link
               to={slide.slug}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: theme.accent, color: '#fff', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: '0.22em', textTransform: 'uppercase', padding: '12px 28px', textDecoration: 'none', transition: 'opacity 0.15s, transform 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateX(2px)' }}
-              onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateX(0)' }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: theme.accent, color: '#fff', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 13, letterSpacing: '0.22em', textTransform: 'uppercase', padding: '11px 24px', textDecoration: 'none', transition: 'opacity 0.15s', flexShrink: 0 }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.88' }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = '1' }}
             >
               {slide.cta}
               <span style={{ fontSize: 16, lineHeight: 1 }}>→</span>
@@ -340,19 +323,19 @@ function HeroSlideshow() {
           </div>
         </div>
 
-        {/* Right: team logo */}
-        <div style={{ opacity: animating ? 0 : 1, transform: animating ? 'scale(0.92) translateX(12px)' : 'scale(1) translateX(0)', transition: 'opacity 0.35s ease, transform 0.35s ease', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-          <div style={{ position: 'absolute', width: 260, height: 260, borderRadius: '50%', background: theme.accent, opacity: 0.08, filter: 'blur(40px)', transition: 'background 0.6s ease' }} />
+        {/* Logo */}
+        <div style={{ opacity: animating ? 0 : 1, transition: 'opacity 0.35s ease', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+          <div style={{ position: 'absolute', width: 'clamp(120px, 20vw, 260px)', height: 'clamp(120px, 20vw, 260px)', borderRadius: '50%', background: theme.accent, opacity: 0.08, filter: 'blur(30px)', transition: 'background 0.6s ease' }} />
           <img
             src={slide.teamName === 'MML' ? '/images/mml-logo.png' : getTeamLogo(slide.teamName)}
             alt={slide.teamName}
-            style={{ width: 260, height: 260, objectFit: 'contain', filter: 'drop-shadow(0 12px 40px rgba(0,0,0,0.6))', position: 'relative', zIndex: 1 }}
+            style={{ width: 'clamp(100px, 18vw, 240px)', height: 'clamp(100px, 18vw, 240px)', objectFit: 'contain', filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5))', position: 'relative', zIndex: 1 }}
           />
         </div>
       </div>
 
       {/* ── Bubble indicators ── */}
-      <div style={{ position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8, zIndex: 20 }}>
+      <div style={{ position: 'absolute', bottom: 16, left: '50%', transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 8, zIndex: 20 }}>
         {HERO_SLIDES.map((s, i) => (
           <button
             key={s.teamName}
@@ -378,11 +361,11 @@ function StatBar() {
   return (
     <div style={{ background: '#fff', borderBottom: '3px solid #C8102E', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
       {stats.map((s, i) => (
-        <div key={s.label} style={{ textAlign: 'center', padding: '1rem 0.5rem', borderRight: i < stats.length - 1 ? '1px solid #e5e7eb' : 'none' }}>
-          <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 40, color: '#1a2a6e', lineHeight: 1 }}>
+        <div key={s.label} style={{ textAlign: 'center', padding: '0.75rem 0.5rem', borderRight: i < stats.length - 1 ? '1px solid #e5e7eb' : 'none' }}>
+          <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(28px, 6vw, 40px)', color: '#1a2a6e', lineHeight: 1 }}>
             {s.num}
           </span>
-          <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#6b7280', marginTop: 4 }}>
+          <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 'clamp(9px, 2vw, 11px)', letterSpacing: '0.15em', textTransform: 'uppercase', color: '#6b7280', marginTop: 3 }}>
             {s.label}
           </span>
         </div>
@@ -394,6 +377,7 @@ function StatBar() {
 // ─── HEADER ────────────────────────────────────────────────────────────────────
 function Header() {
   const [historyOpen, setHistoryOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const historyRef = useRef<HTMLDivElement>(null)
 
   const seasons = [
@@ -405,85 +389,147 @@ function Header() {
     { label: 'S6 · Iowa Open',            to: '/history/s6', year: '2025' },
   ]
 
+  const navLinks = [
+    { label: 'Home',     to: '/' },
+    { label: 'Teams',    to: '/teams' },
+    { label: 'Articles', to: '/articles' },
+    { label: 'History',  to: '/history' },
+  ]
+
   return (
-    <header style={{ background: '#fff', borderBottom: '1px solid #e5e7eb', position: 'sticky', top: 0, zIndex: 50 }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-          <img src="/images/mml-logo.png" alt="Moody Marble League" style={{ height: 42, width: 'auto' }} />
-          <div>
-            <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, lineHeight: 1, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-              <span style={{ color: '#C8102E' }}>Moody </span>
-              <span style={{ color: '#1a2a6e' }}>Marble League</span>
-            </div>
-            <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 600, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#9ca3af', marginTop: 2 }}>
-              MML Historical Archive
-            </div>
-          </div>
-        </Link>
-
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
-          {[
-            { label: 'Home',     to: '/' },
-            { label: 'Teams',    to: '/teams' },
-            { label: 'Articles', to: '/articles' },
-          ].map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a2a6e', textDecoration: 'none', padding: '6px 14px', borderBottom: '3px solid transparent', transition: 'color 0.15s, border-color 0.15s' }}
-              onMouseEnter={e => { e.currentTarget.style.color = '#C8102E'; e.currentTarget.style.borderBottomColor = '#C8102E' }}
-              onMouseLeave={e => { e.currentTarget.style.color = '#1a2a6e'; e.currentTarget.style.borderBottomColor = 'transparent' }}
-            >
-              {item.label}
-            </Link>
-          ))}
-
-          <div
-            ref={historyRef}
-            style={{ position: 'relative' }}
-            onMouseEnter={() => setHistoryOpen(true)}
-            onMouseLeave={() => setHistoryOpen(false)}
-          >
-            <Link
-              to="/history"
-              style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', color: historyOpen ? '#C8102E' : '#1a2a6e', textDecoration: 'none', padding: '6px 14px', borderBottom: historyOpen ? '3px solid #C8102E' : '3px solid transparent', transition: 'color 0.15s, border-color 0.15s', display: 'flex', alignItems: 'center', gap: 5, height: 64, boxSizing: 'border-box' }}
-            >
-              History
-              <span style={{ fontSize: 9, opacity: 0.6, transform: historyOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
-            </Link>
-
-            {historyOpen && (
-              <div style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', background: '#fff', border: '1px solid #e5e7eb', borderTop: '3px solid #C8102E', boxShadow: '0 8px 24px rgba(0,0,0,0.10)', minWidth: 240, zIndex: 100 }}>
-                {seasons.map((s) => (
-                  <Link
-                    key={s.to}
-                    to={s.to}
-                    style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', textDecoration: 'none', borderBottom: '1px solid #f3f4f6', transition: 'background 0.12s' }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.background = '#f4f6fb'
-                      const label = e.currentTarget.querySelector('.dd-label') as HTMLElement
-                      if (label) label.style.color = '#C8102E'
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.background = '#fff'
-                      const label = e.currentTarget.querySelector('.dd-label') as HTMLElement
-                      if (label) label.style.color = '#1a2a6e'
-                    }}
-                  >
-                    <span className="dd-label" style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1a2a6e', transition: 'color 0.12s' }}>
-                      {s.label}
-                    </span>
-                    <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, color: '#9ca3af', letterSpacing: '0.1em' }}>
-                      {s.year}
-                    </span>
-                  </Link>
-                ))}
+    <>
+      <style>{`
+        .desktop-nav { display: flex; }
+        .hamburger-btn { display: none; }
+        .mobile-menu { display: none; }
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .hamburger-btn { display: flex !important; }
+        }
+      `}</style>
+      <header style={{ background: '#fff', borderBottom: '1px solid #e5e7eb', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 1.5rem', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          {/* Logo */}
+          <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
+            <img src="/images/mml-logo.png" alt="Moody Marble League" style={{ height: 38, width: 'auto' }} />
+            <div>
+              <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(14px, 3.5vw, 20px)', lineHeight: 1, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                <span style={{ color: '#C8102E' }}>Moody </span>
+                <span style={{ color: '#1a2a6e' }}>Marble League</span>
               </div>
-            )}
+              <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 600, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af', marginTop: 1 }}>
+                MML Historical Archive
+              </div>
+            </div>
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="desktop-nav" style={{ alignItems: 'center', gap: 0 }}>
+            {[
+              { label: 'Home',     to: '/' },
+              { label: 'Teams',    to: '/teams' },
+              { label: 'Articles', to: '/articles' },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a2a6e', textDecoration: 'none', padding: '6px 14px', borderBottom: '3px solid transparent', transition: 'color 0.15s, border-color 0.15s' }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#C8102E'; e.currentTarget.style.borderBottomColor = '#C8102E' }}
+                onMouseLeave={e => { e.currentTarget.style.color = '#1a2a6e'; e.currentTarget.style.borderBottomColor = 'transparent' }}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            {/* History dropdown */}
+            <div
+              ref={historyRef}
+              style={{ position: 'relative' }}
+              onMouseEnter={() => setHistoryOpen(true)}
+              onMouseLeave={() => setHistoryOpen(false)}
+            >
+              <Link
+                to="/history"
+                style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.15em', textTransform: 'uppercase', color: historyOpen ? '#C8102E' : '#1a2a6e', textDecoration: 'none', padding: '6px 14px', borderBottom: historyOpen ? '3px solid #C8102E' : '3px solid transparent', transition: 'color 0.15s, border-color 0.15s', display: 'flex', alignItems: 'center', gap: 5, height: 64, boxSizing: 'border-box' }}
+              >
+                History
+                <span style={{ fontSize: 9, opacity: 0.6, transform: historyOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', display: 'inline-block' }}>▼</span>
+              </Link>
+              {historyOpen && (
+                <div style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', background: '#fff', border: '1px solid #e5e7eb', borderTop: '3px solid #C8102E', boxShadow: '0 8px 24px rgba(0,0,0,0.10)', minWidth: 240, zIndex: 100 }}>
+                  {seasons.map((s) => (
+                    <Link
+                      key={s.to}
+                      to={s.to}
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 16px', textDecoration: 'none', borderBottom: '1px solid #f3f4f6', transition: 'background 0.12s' }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.background = '#f4f6fb'
+                        const label = e.currentTarget.querySelector('.dd-label') as HTMLElement
+                        if (label) label.style.color = '#C8102E'
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.background = '#fff'
+                        const label = e.currentTarget.querySelector('.dd-label') as HTMLElement
+                        if (label) label.style.color = '#1a2a6e'
+                      }}
+                    >
+                      <span className="dd-label" style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1a2a6e', transition: 'color 0.12s' }}>
+                        {s.label}
+                      </span>
+                      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, color: '#9ca3af', letterSpacing: '0.1em' }}>
+                        {s.year}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          </nav>
+
+          {/* Hamburger */}
+          <button
+            className="hamburger-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{ flexDirection: 'column', gap: 5, background: 'none', border: 'none', cursor: 'pointer', padding: 8 }}
+            aria-label="Toggle menu"
+          >
+            <span style={{ display: 'block', width: 24, height: 2, background: menuOpen ? '#C8102E' : '#1a2a6e', transition: 'all 0.2s', transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: menuOpen ? '#C8102E' : '#1a2a6e', transition: 'all 0.2s', opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: 'block', width: 24, height: 2, background: menuOpen ? '#C8102E' : '#1a2a6e', transition: 'all 0.2s', transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none' }} />
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {menuOpen && (
+          <div style={{ background: '#fff', borderTop: '1px solid #e5e7eb', borderBottom: '3px solid #C8102E' }}>
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={() => setMenuOpen(false)}
+                style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 15, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#1a2a6e', textDecoration: 'none', padding: '14px 1.5rem', borderBottom: '1px solid #f3f4f6' }}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div style={{ padding: '10px 1.5rem 4px', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af' }}>
+              Seasons
+            </div>
+            {seasons.map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                onClick={() => setMenuOpen(false)}
+                style={{ display: 'flex', justifyContent: 'space-between', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#1a2a6e', textDecoration: 'none', padding: '10px 1.5rem', borderBottom: '1px solid #f3f4f6' }}
+              >
+                <span>{s.label}</span>
+                <span style={{ color: '#9ca3af' }}>{s.year}</span>
+              </Link>
+            ))}
           </div>
-        </nav>
-      </div>
-    </header>
+        )}
+      </header>
+    </>
   )
 }
 
@@ -491,18 +537,18 @@ function Header() {
 function Footer() {
   return (
     <footer style={{ background: '#1a2a6e', borderTop: '3px solid #C8102E', marginTop: 0 }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '2.5rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <img src="/images/mml-logo.png" alt="MML" style={{ height: 36, width: 'auto' }} />
-          <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 22, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <img src="/images/mml-logo.png" alt="MML" style={{ height: 32, width: 'auto' }} />
+          <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
             <span style={{ color: '#C8102E' }}>Moody </span>
             <span style={{ color: '#fff' }}>Marble League</span>
           </div>
         </div>
-        <div style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 14, color: 'rgba(255,255,255,0.45)' }}>
+        <div style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 13, color: 'rgba(255,255,255,0.45)' }}>
           Competitive marble racing since Season 1 · 2016–2025
         </div>
-        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           {[
             { label: 'Teams',    to: '/teams' },
             { label: 'Articles', to: '/articles' },
@@ -575,21 +621,21 @@ function HomePage() {
 function ArticlesPage() {
   return (
     <main style={{ background: '#fff' }}>
-      <section style={{ background: '#1a2a6e', padding: '5rem 1.5rem' }}>
+      <section style={{ background: '#1a2a6e', padding: '3.5rem 1.5rem' }}>
         <div style={{ maxWidth: 1280, margin: '0 auto' }}>
           <div style={{ display: 'inline-block', background: '#C8102E', color: '#fff', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', padding: '4px 12px', marginBottom: 16 }}>
             MML Journalism
           </div>
-          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(42px, 7vw, 80px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.95, marginBottom: '1rem' }}>
+          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(36px, 7vw, 80px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.95, marginBottom: '1rem' }}>
             Featured Articles
           </h1>
-          <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 18, color: 'rgba(255,255,255,0.6)', maxWidth: 560 }}>
+          <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(14px, 3vw, 18px)', color: 'rgba(255,255,255,0.6)', maxWidth: 560 }}>
             Deep dives, rivalries, franchise histories, and the stories that shaped the Moody Marble League.
           </p>
         </div>
       </section>
-      <section style={{ maxWidth: 1280, margin: '0 auto', padding: '3rem 1.5rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+      <section style={{ maxWidth: 1280, margin: '0 auto', padding: '2rem 1.5rem 3rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
           {articles.map((article) => (
             <ArticleCard key={article.slug} article={article} />
           ))}
@@ -606,7 +652,7 @@ function ArticlePage() {
 
   if (!article) {
     return (
-      <main style={{ maxWidth: 1280, margin: '0 auto', padding: '6rem 1.5rem' }}>
+      <main style={{ maxWidth: 1280, margin: '0 auto', padding: '4rem 1.5rem' }}>
         <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 48, textTransform: 'uppercase', color: '#1a2a6e' }}>
           Article Not Found
         </h1>
@@ -622,44 +668,44 @@ function ArticlePage() {
 
   return (
     <main style={{ background: '#fff' }}>
-      <section style={{ background: theme.bg, padding: '5rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: theme.bg, padding: '3.5rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
           <div style={{ position: 'absolute', width: '50%', height: '100%', background: theme.stripe1, transform: 'skewX(-18deg)', right: '-10%' }} />
         </div>
         <div style={{ maxWidth: 900, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <Link to="/articles" style={{ display: 'inline-block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', marginBottom: 24 }}>
+          <Link to="/articles" style={{ display: 'inline-block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', marginBottom: 20 }}>
             ← Back to Articles
           </Link>
-          <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
+          <div style={{ display: 'flex', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
             {relatedTeams.map((name) => (
-              <img key={name} src={getTeamLogo(name)} alt={name} style={{ width: 64, height: 64, objectFit: 'contain', background: 'rgba(255,255,255,0.08)', padding: 6 }} />
+              <img key={name} src={getTeamLogo(name)} alt={name} style={{ width: 52, height: 52, objectFit: 'contain', background: 'rgba(255,255,255,0.08)', padding: 6 }} />
             ))}
           </div>
-          <div style={{ display: 'inline-block', background: theme.accent, color: '#fff', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', padding: '4px 12px', marginBottom: 16 }}>
+          <div style={{ display: 'inline-block', background: theme.accent, color: '#fff', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', padding: '4px 12px', marginBottom: 14 }}>
             {article.category}
           </div>
-          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(38px, 6vw, 72px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.95, marginBottom: 12 }}>
+          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(32px, 6vw, 72px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.95, marginBottom: 10 }}>
             {article.title}
           </h1>
-          <p style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 20, color: theme.textMuted, letterSpacing: '0.05em' }}>
+          <p style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 'clamp(14px, 3vw, 20px)', color: theme.textMuted, letterSpacing: '0.05em' }}>
             {article.tag}
           </p>
         </div>
       </section>
-      <article style={{ maxWidth: 760, margin: '0 auto', padding: '3rem 1.5rem 5rem' }}>
-        <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 20, lineHeight: 1.7, color: '#374151', fontWeight: 600, borderLeft: `6px solid ${theme.accent}`, paddingLeft: 20, marginBottom: '2.5rem' }}>
+      <article style={{ maxWidth: 760, margin: '0 auto', padding: '2.5rem 1.5rem 4rem' }}>
+        <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(16px, 3vw, 20px)', lineHeight: 1.7, color: '#374151', fontWeight: 600, borderLeft: `6px solid ${theme.accent}`, paddingLeft: 18, marginBottom: '2rem' }}>
           {article.summary}
         </p>
-        <blockquote style={{ background: theme.bg, padding: '2rem', marginBottom: '2.5rem', borderLeft: `6px solid ${theme.accent}` }}>
-          <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: theme.accent, marginBottom: 10 }}>
+        <blockquote style={{ background: theme.bg, padding: '1.5rem', marginBottom: '2rem', borderLeft: `6px solid ${theme.accent}` }}>
+          <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: theme.accent, marginBottom: 8 }}>
             Pull Quote
           </div>
-          <p style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 26, color: '#fff', lineHeight: 1.2, letterSpacing: '0.01em' }}>
+          <p style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 'clamp(18px, 4vw, 26px)', color: '#fff', lineHeight: 1.2, letterSpacing: '0.01em' }}>
             "{article.pullQuote}"
           </p>
         </blockquote>
         {article.content.map((para, i) => (
-          <p key={i} style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 18, lineHeight: 1.8, color: '#374151', marginBottom: '1.5rem' }}>
+          <p key={i} style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(15px, 3vw, 18px)', lineHeight: 1.8, color: '#374151', marginBottom: '1.25rem' }}>
             {para}
           </p>
         ))}

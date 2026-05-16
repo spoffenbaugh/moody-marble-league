@@ -436,6 +436,30 @@ function placeSuffix(n: number) {
 function TimelinePage() {
   return (
     <main style={{ background: '#fff' }}>
+      <style>{`
+        .season-body-grid {
+          display: grid;
+          grid-template-columns: 1fr 320px;
+          gap: 2.5rem;
+          align-items: start;
+        }
+        .season-hero-grid {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 2rem;
+        }
+        .podium-bar { display: flex; }
+        @media (max-width: 640px) {
+          .season-body-grid { grid-template-columns: 1fr !important; }
+          .season-hero-grid { grid-template-columns: 1fr !important; }
+          .season-hero-logo { display: none !important; }
+          .sticky-standings { position: static !important; }
+          .podium-bar { flex-direction: column !important; }
+          .podium-item { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+        }
+      `}</style>
+
       <section style={{ background: '#1a2a6e', position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
           <div style={{ position: 'absolute', width: '160%', height: '100%', background: '#141f55', transform: 'skewX(-18deg) translateX(-20%)', top: 0, left: '30%' }} />
@@ -445,18 +469,18 @@ function TimelinePage() {
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: '#C8102E', opacity: 0.6 }} />
           <img src="/images/mml-logo.png" alt="" aria-hidden="true" style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', height: '130%', opacity: 0.05, filter: 'grayscale(100%) brightness(2)', pointerEvents: 'none' }} />
         </div>
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '3.5rem 1.5rem 3rem' }}>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '3rem 1.5rem 2.5rem' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 16, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(200,16,46,0.4)', padding: '5px 14px 5px 10px' }}>
             <span style={{ display: 'block', width: 20, height: 2, background: '#C8102E', flexShrink: 0 }} />
             <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C8102E' }}>
               Est. 2016
             </span>
           </div>
-          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(42px, 6vw, 76px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.92, marginBottom: '1rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
+          <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(36px, 8vw, 76px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.92, marginBottom: '1rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
             League History
           </h1>
           <div style={{ width: 48, height: 3, background: '#C8102E', marginBottom: '1rem' }} />
-          <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 16, color: 'rgba(255,255,255,0.55)', maxWidth: 480, lineHeight: 1.6 }}>
+          <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(14px, 3vw, 16px)', color: 'rgba(255,255,255,0.55)', maxWidth: 480, lineHeight: 1.6 }}>
             Six seasons. Six tournaments. A complete record of every champion, every result, and every moment that defined the Moody Marble League.
           </p>
         </div>
@@ -464,12 +488,14 @@ function TimelinePage() {
 
       <div style={{ height: 3, background: '#C8102E' }} />
 
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '4rem 1.5rem 6rem', position: 'relative' }}>
-        <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 2, background: '#e5e7eb', transform: 'translateX(-50%)' }} />
-        {SEASONS.map((season, i) => {
-          const isLeft = i % 2 === 0
+      {/* ── Timeline ── */}
+      <div style={{ maxWidth: 700, margin: '0 auto', padding: '3rem 1.5rem 5rem', position: 'relative' }}>
+        {/* Left-anchored spine */}
+        <div style={{ position: 'absolute', left: 'calc(1.5rem + 8px)', top: 0, bottom: 0, width: 2, background: '#e5e7eb' }} />
+
+        {SEASONS.map((season) => {
           const theme = getTheme(season.champion)
-          return <TimelineCard key={season.id} season={season} isLeft={isLeft} theme={theme} />
+          return <TimelineCard key={season.id} season={season} theme={theme} />
         })}
       </div>
     </main>
@@ -477,73 +503,80 @@ function TimelinePage() {
 }
 
 // ─── TIMELINE CARD ─────────────────────────────────────────────────────────────
-function TimelineCard({ season, isLeft, theme }: {
+function TimelineCard({ season, theme }: {
   season: SeasonData
-  isLeft: boolean
   theme: ReturnType<typeof getTheme>
 }) {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 48px 1fr', alignItems: 'start', marginBottom: '3rem', position: 'relative' }}>
-      <div style={{ paddingRight: 32, paddingTop: 8 }}>
-        {isLeft && (
-          <Link to={`/history/${season.id}`} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{ textDecoration: 'none', display: 'block' }}>
-            <CardContent season={season} theme={theme} hovered={hovered} alignRight />
-          </Link>
-        )}
+    <div style={{ display: 'grid', gridTemplateColumns: '32px 1fr', alignItems: 'start', marginBottom: '2rem', position: 'relative' }}>
+      {/* Node */}
+      <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 14, zIndex: 1 }}>
+        <div style={{
+          width: 16, height: 16,
+          borderRadius: '50%',
+          background: hovered ? theme.accent : '#fff',
+          border: `3px solid ${hovered ? theme.accent : '#C8102E'}`,
+          boxShadow: hovered ? `0 0 0 4px ${theme.accent}33` : 'none',
+          transition: 'all 0.2s ease',
+          flexShrink: 0,
+        }} />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 12 }}>
-        <div style={{ width: 20, height: 20, borderRadius: '50%', background: hovered ? theme.accent : '#fff', border: `3px solid ${hovered ? theme.accent : '#C8102E'}`, boxShadow: hovered ? `0 0 0 4px ${theme.accent}33` : 'none', transition: 'all 0.2s ease', zIndex: 1, flexShrink: 0 }} />
-      </div>
-      <div style={{ paddingLeft: 32, paddingTop: 8 }}>
-        {!isLeft && (
-          <Link to={`/history/${season.id}`} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} style={{ textDecoration: 'none', display: 'block' }}>
-            <CardContent season={season} theme={theme} hovered={hovered} alignRight={false} />
-          </Link>
-        )}
-      </div>
-    </div>
-  )
-}
 
-// ─── CARD CONTENT ──────────────────────────────────────────────────────────────
-function CardContent({ season, theme, hovered, alignRight }: {
-  season: SeasonData
-  theme: ReturnType<typeof getTheme>
-  hovered: boolean
-  alignRight: boolean
-}) {
-  return (
-    <div style={{
-      background: hovered ? theme.bg : '#fff',
-      borderTop: `1px solid ${hovered ? theme.accent : '#e5e7eb'}`,
-      borderBottom: `1px solid ${hovered ? theme.accent : '#e5e7eb'}`,
-      borderLeft: alignRight ? `1px solid ${hovered ? theme.accent : '#e5e7eb'}` : `4px solid ${hovered ? theme.accent : '#e5e7eb'}`,
-      borderRight: alignRight ? `4px solid ${hovered ? theme.accent : '#e5e7eb'}` : `1px solid ${hovered ? theme.accent : '#e5e7eb'}`,
-      boxShadow: hovered ? '0 8px 28px rgba(0,0,0,0.12)' : '0 1px 4px rgba(0,0,0,0.04)',
-      transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
-      transition: 'all 0.2s ease',
-      overflow: 'hidden',
-    }}>
-      <div style={{ height: 3, background: theme.accent }} />
-      <div style={{ padding: '1.25rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: alignRight ? 'flex-end' : 'flex-start', gap: 8, marginBottom: 8 }}>
-          <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: theme.accent, background: `${theme.accent}18`, padding: '2px 8px' }}>{season.season}</span>
-          <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.2em', color: hovered ? 'rgba(255,255,255,0.4)' : '#9ca3af', transition: 'color 0.2s' }}>{season.year}</span>
-        </div>
-        <h3 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 26, textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1, color: hovered ? '#fff' : '#111827', textAlign: alignRight ? 'right' : 'left', marginBottom: 6, transition: 'color 0.2s' }}>{season.tournament}</h3>
-        <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 13, lineHeight: 1.5, color: hovered ? theme.textMuted : '#6b7280', textAlign: alignRight ? 'right' : 'left', marginBottom: '1rem', transition: 'color 0.2s' }}>{season.tagline}</p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: alignRight ? 'flex-end' : 'flex-start' }}>
-          <img src={getTeamLogo(season.champion)} alt={season.champion} style={{ width: 28, height: 28, objectFit: 'contain' }} />
-          <div>
-            <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: hovered ? 'rgba(255,255,255,0.4)' : '#9ca3af', transition: 'color 0.2s' }}>Champion</div>
-            <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 16, textTransform: 'uppercase', color: hovered ? '#fff' : theme.accent, letterSpacing: '0.04em', transition: 'color 0.2s' }}>{season.champion}</div>
+      {/* Card */}
+      <div style={{ paddingLeft: 16, paddingTop: 4 }}>
+        <Link
+          to={`/history/${season.id}`}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{ textDecoration: 'none', display: 'block' }}
+        >
+          <div style={{
+            background: hovered ? theme.bg : '#fff',
+            borderTop: `1px solid ${hovered ? theme.accent : '#e5e7eb'}`,
+            borderBottom: `1px solid ${hovered ? theme.accent : '#e5e7eb'}`,
+            borderRight: `1px solid ${hovered ? theme.accent : '#e5e7eb'}`,
+            borderLeft: `4px solid ${hovered ? theme.accent : '#e5e7eb'}`,
+            boxShadow: hovered ? '0 8px 28px rgba(0,0,0,0.12)' : '0 1px 4px rgba(0,0,0,0.04)',
+            transform: hovered ? 'translateY(-2px)' : 'translateY(0)',
+            transition: 'all 0.2s ease',
+            overflow: 'hidden',
+          }}>
+            <div style={{ height: 3, background: theme.accent }} />
+            <div style={{ padding: '1rem 1.25rem' }}>
+              {/* Season + year */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: theme.accent, background: `${theme.accent}18`, padding: '2px 8px' }}>{season.season}</span>
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.2em', color: hovered ? 'rgba(255,255,255,0.4)' : '#9ca3af', transition: 'color 0.2s' }}>{season.year} · {season.location}</span>
+              </div>
+
+              {/* Tournament name */}
+              <h3 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(20px, 4vw, 28px)', textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1, color: hovered ? '#fff' : '#111827', marginBottom: 6, transition: 'color 0.2s' }}>
+                {season.tournament}
+              </h3>
+
+              {/* Tagline */}
+              <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 13, lineHeight: 1.5, color: hovered ? theme.textMuted : '#6b7280', marginBottom: '0.75rem', transition: 'color 0.2s' }}>
+                {season.tagline}
+              </p>
+
+              {/* Champion + CTA row */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <img src={getTeamLogo(season.champion)} alt={season.champion} style={{ width: 26, height: 26, objectFit: 'contain' }} />
+                  <div>
+                    <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: hovered ? 'rgba(255,255,255,0.4)' : '#9ca3af', transition: 'color 0.2s' }}>Champion</div>
+                    <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 15, textTransform: 'uppercase', color: hovered ? '#fff' : theme.accent, letterSpacing: '0.04em', transition: 'color 0.2s' }}>{season.champion}</div>
+                  </div>
+                </div>
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: theme.accent }}>
+                  View Season →
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div style={{ marginTop: '1rem', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: theme.accent, textAlign: alignRight ? 'right' : 'left' }}>
-          View Season →
-        </div>
+        </Link>
       </div>
     </div>
   )
@@ -556,7 +589,7 @@ function SeasonPage() {
 
   if (!season) {
     return (
-      <main style={{ maxWidth: 1000, margin: '0 auto', padding: '5rem 1.5rem' }}>
+      <main style={{ maxWidth: 1000, margin: '0 auto', padding: '4rem 1.5rem' }}>
         <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 48, textTransform: 'uppercase', color: '#1a2a6e' }}>Season Not Found</h1>
         <Link to="/history" style={{ display: 'inline-block', marginTop: 20, fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8102E', textDecoration: 'none' }}>← Back to History</Link>
       </main>
@@ -578,128 +611,132 @@ function SeasonPage() {
           <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: theme.accent, opacity: 0.6 }} />
           <img src={getTeamLogo(season.champion)} alt="" aria-hidden="true" style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', height: '110%', opacity: 0.07, filter: 'grayscale(100%) brightness(2)', pointerEvents: 'none' }} />
         </div>
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '3.5rem 1.5rem 0', display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: '2rem' }}>
-          <div>
-            <Link to="/history" style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>← League History</Link>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, background: 'rgba(255,255,255,0.06)', border: `1px solid ${theme.accent}44`, padding: '5px 14px 5px 10px', width: 'fit-content' }}>
-              <span style={{ display: 'block', width: 20, height: 2, background: theme.accent, flexShrink: 0 }} />
-              <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: theme.accent }}>{season.season} · {season.year} · {season.location}</span>
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '2.5rem 1.5rem 0' }}>
+          <div className="season-hero-grid">
+            <div>
+              <Link to="/history" style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none', display: 'inline-block', marginBottom: 14 }}>← League History</Link>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14, background: 'rgba(255,255,255,0.06)', border: `1px solid ${theme.accent}44`, padding: '5px 14px 5px 10px', width: 'fit-content' }}>
+                <span style={{ display: 'block', width: 20, height: 2, background: theme.accent, flexShrink: 0 }} />
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: theme.accent }}>{season.season} · {season.year} · {season.location}</span>
+              </div>
+              <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(32px, 6vw, 68px)', textTransform: 'uppercase', color: '#fff', lineHeight: 0.92, letterSpacing: '0.02em', marginBottom: '0.75rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>{season.tournament}</h1>
+              <div style={{ width: 48, height: 3, background: theme.accent, marginBottom: '0.75rem' }} />
+              <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(14px, 2.5vw, 16px)', color: theme.textMuted, maxWidth: 440, lineHeight: 1.6, marginBottom: '1.5rem' }}>{season.story}</p>
             </div>
-            <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(38px, 5vw, 68px)', textTransform: 'uppercase', color: '#fff', lineHeight: 0.92, letterSpacing: '0.02em', marginBottom: '1rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>{season.tournament}</h1>
-            <div style={{ width: 48, height: 3, background: theme.accent, marginBottom: '1rem' }} />
-            <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 16, color: theme.textMuted, maxWidth: 440, lineHeight: 1.65, marginBottom: '2rem' }}>{season.story}</p>
+
+            <div className="season-hero-logo" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, paddingBottom: '1.5rem' }}>
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', width: 160, height: 160, borderRadius: '50%', background: theme.accent, opacity: 0.08, filter: 'blur(24px)' }} />
+                <img src={getTeamLogo(season.champion)} alt={season.champion} style={{ width: 150, height: 150, objectFit: 'contain', filter: 'drop-shadow(0 6px 24px rgba(0,0,0,0.5))', position: 'relative', zIndex: 1 }} />
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>Champion</div>
+                <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 18, textTransform: 'uppercase', color: '#fff', letterSpacing: '0.04em' }}>{season.champion}</div>
+              </div>
+            </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, paddingBottom: '2rem' }}>
-            <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', width: 200, height: 200, borderRadius: '50%', background: theme.accent, opacity: 0.08, filter: 'blur(30px)' }} />
-              <img src={getTeamLogo(season.champion)} alt={season.champion} style={{ width: 180, height: 180, objectFit: 'contain', filter: 'drop-shadow(0 8px 32px rgba(0,0,0,0.5))', position: 'relative', zIndex: 1 }} />
-            </div>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>Champion</div>
-              <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, textTransform: 'uppercase', color: '#fff', letterSpacing: '0.04em' }}>{season.champion}</div>
-            </div>
-          </div>
-        </div>
-        {/* Podium bar */}
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '0 1.5rem' }}>
-          <div style={{ display: 'flex', borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: '1.5rem' }}>
+
+          {/* Podium bar */}
+          <div className="podium-bar" style={{ borderTop: '1px solid rgba(255,255,255,0.07)', marginTop: '1rem' }}>
             {podium.map((p) => (
-              <div key={p.place} style={{ flex: 1, padding: '14px 16px', borderRight: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 28, color: p.place === 1 ? theme.accent : 'rgba(255,255,255,0.25)', lineHeight: 1, flexShrink: 0 }}>{placeSuffix(p.place)}</span>
-                <img src={getTeamLogo(p.team)} alt={p.team} style={{ width: 28, height: 28, objectFit: 'contain', flexShrink: 0 }} />
-                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 14, textTransform: 'uppercase', color: '#fff', letterSpacing: '0.05em' }}>{p.team}</span>
+              <div key={p.place} className="podium-item" style={{ flex: 1, padding: '12px 14px', borderRight: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(18px, 4vw, 28px)', color: p.place === 1 ? theme.accent : 'rgba(255,255,255,0.25)', lineHeight: 1, flexShrink: 0 }}>{placeSuffix(p.place)}</span>
+                <img src={getTeamLogo(p.team)} alt={p.team} style={{ width: 24, height: 24, objectFit: 'contain', flexShrink: 0 }} />
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 'clamp(12px, 2.5vw, 14px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.05em' }}>{p.team}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Red border ── */}
       <div style={{ height: 3, background: '#C8102E' }} />
 
       {/* ── Two-column body ── */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '3rem 1.5rem 6rem', display: 'grid', gridTemplateColumns: '1fr 340px', gap: '3rem', alignItems: 'start' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '2.5rem 1.5rem 5rem' }}>
+        <div className="season-body-grid">
 
-        {/* ── LEFT: Editorial ── */}
-        <div>
-          {/* Photo placeholder */}
-          <div style={{ width: '100%', aspectRatio: '16/9', background: '#1a2a6e', border: '2px dashed rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '2.5rem', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #141f55 0%, #1a2a6e 50%, #0d1540 100%)' }} />
-            <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-              <div style={{ width: 48, height: 48, border: '2px dashed rgba(255,255,255,0.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', fontSize: 20, color: 'rgba(255,255,255,0.2)' }}>📷</div>
-              <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)' }}>{season.tournament} · {season.year}</div>
-              <div style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 12, color: 'rgba(255,255,255,0.15)', marginTop: 4 }}>Photo coming soon</div>
-            </div>
-          </div>
-
-          {/* Key Storylines */}
-          <div style={{ marginBottom: '3rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, paddingBottom: 10, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
-              <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
-              <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 22, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.04em', margin: 0 }}>Key Storylines</h2>
-            </div>
-            {season.storylines.map((s, i) => (
-              <div key={i} style={{ marginBottom: '2rem', paddingLeft: 16, borderLeft: '3px solid #e5e7eb' }}>
-                <h3 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 18, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.03em', marginBottom: 8 }}>{s.title}</h3>
-                <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 16, lineHeight: 1.8, color: '#374151', margin: 0 }}>{s.body}</p>
+          {/* LEFT: Editorial */}
+          <div>
+            {/* Photo placeholder */}
+            <div style={{ width: '100%', aspectRatio: '16/9', background: '#1a2a6e', border: '2px dashed rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #141f55 0%, #1a2a6e 50%, #0d1540 100%)' }} />
+              <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
+                <div style={{ width: 44, height: 44, border: '2px dashed rgba(255,255,255,0.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 10px', fontSize: 18, color: 'rgba(255,255,255,0.2)' }}>📷</div>
+                <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)' }}>{season.tournament} · {season.year}</div>
+                <div style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 11, color: 'rgba(255,255,255,0.15)', marginTop: 3 }}>Photo coming soon</div>
               </div>
-            ))}
-          </div>
-
-          {/* Notable Performances */}
-          <div style={{ marginBottom: '3rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, paddingBottom: 10, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
-              <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
-              <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 22, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.04em', margin: 0 }}>Notable Performances</h2>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {season.notablePerformances.map((p, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, background: '#f4f6fb', border: '1px solid #e5e7eb', borderLeft: '4px solid #C8102E', padding: '14px 16px' }}>
-                  <img src={getTeamLogo(p.team)} alt={p.team} style={{ width: 44, height: 44, objectFit: 'contain', flexShrink: 0 }} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
-                      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 17, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.03em' }}>{p.team}</span>
-                      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 12, color: '#C8102E', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{p.stat}</span>
-                    </div>
-                    <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 14, color: '#6b7280', margin: 0, lineHeight: 1.5 }}>{p.description}</p>
-                  </div>
+
+            {/* Key Storylines */}
+            <div style={{ marginBottom: '2.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 18, paddingBottom: 10, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
+                <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
+                <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.04em', margin: 0 }}>Key Storylines</h2>
+              </div>
+              {season.storylines.map((s, i) => (
+                <div key={i} style={{ marginBottom: '1.75rem', paddingLeft: 14, borderLeft: '3px solid #e5e7eb' }}>
+                  <h3 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 800, fontSize: 17, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.03em', marginBottom: 6 }}>{s.title}</h3>
+                  <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(14px, 2.5vw, 16px)', lineHeight: 1.8, color: '#374151', margin: 0 }}>{s.body}</p>
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Standout Team */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20, paddingBottom: 10, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
-              <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
-              <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 22, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.04em', margin: 0 }}>Standout Team</h2>
+            {/* Notable Performances */}
+            <div style={{ marginBottom: '2.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 18, paddingBottom: 10, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
+                <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
+                <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.04em', margin: 0 }}>Notable Performances</h2>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {season.notablePerformances.map((p, i) => (
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, background: '#f4f6fb', border: '1px solid #e5e7eb', borderLeft: '4px solid #C8102E', padding: '12px 14px' }}>
+                    <img src={getTeamLogo(p.team)} alt={p.team} style={{ width: 40, height: 40, objectFit: 'contain', flexShrink: 0 }} />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3, flexWrap: 'wrap' }}>
+                        <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 16, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.03em' }}>{p.team}</span>
+                        <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, color: '#C8102E', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{p.stat}</span>
+                      </div>
+                      <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 13, color: '#6b7280', margin: 0, lineHeight: 1.5 }}>{p.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ background: '#1a2a6e', padding: '1.5rem', display: 'flex', gap: 20, alignItems: 'flex-start' }}>
-              <img src={getTeamLogo(season.mvp.team)} alt={season.mvp.team} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))' }} />
-              <div>
-                <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C8102E', marginBottom: 6 }}>Tournament Standout</div>
-                <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 28, textTransform: 'uppercase', color: '#fff', letterSpacing: '0.03em', lineHeight: 1, marginBottom: 10 }}>{season.mvp.team}</div>
-                <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 15, lineHeight: 1.7, color: 'rgba(255,255,255,0.65)', margin: 0 }}>{season.mvp.reason}</p>
+
+            {/* Standout Team */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 18, paddingBottom: 10, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
+                <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
+                <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.04em', margin: 0 }}>Standout Team</h2>
+              </div>
+              <div style={{ background: '#1a2a6e', padding: '1.25rem', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                <img src={getTeamLogo(season.mvp.team)} alt={season.mvp.team} style={{ width: 60, height: 60, objectFit: 'contain', flexShrink: 0, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))' }} />
+                <div>
+                  <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C8102E', marginBottom: 4 }}>Tournament Standout</div>
+                  <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(20px, 4vw, 28px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.03em', lineHeight: 1, marginBottom: 8 }}>{season.mvp.team}</div>
+                  <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(13px, 2.5vw, 15px)', lineHeight: 1.7, color: 'rgba(255,255,255,0.65)', margin: 0 }}>{season.mvp.reason}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* ── RIGHT: Sticky standings ── */}
-        <div style={{ position: 'sticky', top: 84 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-            <span style={{ width: 16, height: 2, background: '#C8102E', display: 'block' }} />
-            <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 16, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.05em', margin: 0 }}>Final Standings</h2>
-          </div>
-          <div style={{ border: '1px solid #e5e7eb', maxHeight: 'calc(100vh - 120px)', overflowY: 'auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '44px 1fr', padding: '6px 12px', background: '#f4f6fb', borderBottom: '1px solid #e5e7eb', position: 'sticky', top: 0 }}>
-              {['#', 'Team'].map((h) => (
-                <span key={h} style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af' }}>{h}</span>
+          {/* RIGHT: Sticky standings */}
+          <div className="sticky-standings" style={{ position: 'sticky', top: 80 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+              <span style={{ width: 16, height: 2, background: '#C8102E', display: 'block' }} />
+              <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 15, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.05em', margin: 0 }}>Final Standings</h2>
+            </div>
+            <div style={{ border: '1px solid #e5e7eb', maxHeight: 'calc(100vh - 110px)', overflowY: 'auto' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '44px 1fr', padding: '6px 12px', background: '#f4f6fb', borderBottom: '1px solid #e5e7eb', position: 'sticky', top: 0 }}>
+                {['#', 'Team'].map((h) => (
+                  <span key={h} style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af' }}>{h}</span>
+                ))}
+              </div>
+              {season.standings.map((row, i) => (
+                <StandingRow key={row.place} row={row} i={i} total={season.standings.length} theme={theme} />
               ))}
             </div>
-            {season.standings.map((row, i) => (
-              <StandingRow key={row.place} row={row} i={i} total={season.standings.length} theme={theme} />
-            ))}
           </div>
         </div>
       </div>
@@ -724,13 +761,13 @@ function StandingRow({ row, i, total, theme }: {
       onMouseLeave={() => setHovered(false)}
       style={{ display: 'grid', gridTemplateColumns: '44px 1fr', padding: '8px 12px', borderBottom: i < total - 1 ? '1px solid #f3f4f6' : 'none', background: isChamp ? `${theme.accent}10` : hovered ? '#f4f6fb' : '#fff', borderLeft: isChamp ? `3px solid ${theme.accent}` : hovered ? '3px solid #C8102E' : '3px solid transparent', alignItems: 'center', transition: 'all 0.15s ease' }}
     >
-      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 16, color: isPodium ? theme.accent : '#9ca3af' }}>
+      <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 15, color: isPodium ? theme.accent : '#9ca3af' }}>
         {placeSuffix(row.place)}
       </span>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <img src={getTeamLogo(row.team)} alt={row.team} style={{ width: 26, height: 26, objectFit: 'contain', background: '#f4f6fb', padding: 2, flexShrink: 0 }} />
-        <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 14, color: '#111827', letterSpacing: '0.02em' }}>{row.team}</span>
-        {isChamp && <span style={{ fontSize: 12 }}>🏆</span>}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+        <img src={getTeamLogo(row.team)} alt={row.team} style={{ width: 24, height: 24, objectFit: 'contain', background: '#f4f6fb', padding: 2, flexShrink: 0 }} />
+        <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, color: '#111827', letterSpacing: '0.02em' }}>{row.team}</span>
+        {isChamp && <span style={{ fontSize: 11 }}>🏆</span>}
       </div>
     </div>
   )

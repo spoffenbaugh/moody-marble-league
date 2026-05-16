@@ -6,20 +6,20 @@ const teams = [
   { name: 'Accio',               logo: '/images/teams/accio.png',               color: '#CA8A04', division: 'South West',    owner: 'Joel', seasons: 1, average: '9.00',  championships: 0 },
   { name: 'Angels',              logo: '/images/teams/angels.png',              color: '#DB2777', division: 'Rocky Mountains', owner: 'Joel', seasons: 6, average: '10.00', championships: 1 },
   { name: 'Big Cats',            logo: '/images/teams/big-cats.png',            color: '#C2410C', division: 'Great Plains',   owner: 'Sam',  seasons: 2, average: '16.00', championships: 0 },
-  { name: 'Cheapskates',         logo: '/images/mml-logo.png',                  color: '#0F766E', division: 'Relegated',      owner: 'Joel',  seasons: 3, average: '11.33', championships: 0 },
+  { name: 'Cheapskates',         logo: '/images/mml-logo.png',                  color: '#0F766E', division: 'Relegated',      owner: 'TBD',  seasons: 3, average: '11.33', championships: 0 },
   { name: 'Club Baby Seal',      logo: '/images/teams/club-baby-seal.png',      color: '#0369A1', division: 'South Central',  owner: 'Other',seasons: 1, average: '22.00', championships: 0 },
   { name: 'Deep Sky',            logo: '/images/teams/deep-sky.png',            color: '#0284C7', division: 'Great Plains',   owner: 'Jeff', seasons: 6, average: '7.50',  championships: 0 },
   { name: 'Double Truffle',      logo: '/images/teams/double-truffle.png',      color: '#92400E', division: 'South West',     owner: 'Sam',  seasons: 3, average: '10.33', championships: 0 },
   { name: 'Expressos',           logo: '/images/teams/expressos.png',           color: '#78350F', division: 'New England',    owner: 'Jeff', seasons: 6, average: '9.00',  championships: 0 },
-  { name: 'Flower Power',        logo: '/images/mml-logo.png',                  color: '#BE185D', division: 'Relegated',      owner: 'Jeff',  seasons: 1, average: '20.00', championships: 0 },
-  { name: 'Fracture',            logo: '/images/teams/fracture.png',            color: '#1E293B', division: 'Relegated',      owner: 'Jeff',  seasons: 1, average: '24.00', championships: 0 },
+  { name: 'Flower Power',        logo: '/images/mml-logo.png',                  color: '#BE185D', division: 'Relegated',      owner: 'TBD',  seasons: 1, average: '20.00', championships: 0 },
+  { name: 'Fracture',            logo: '/images/teams/fracture.png',            color: '#1E293B', division: 'Relegated',      owner: 'Sam',  seasons: 1, average: '24.00', championships: 0 },
   { name: 'GotToGo',             logo: '/images/teams/gottogo.png',             color: '#991B1B', division: 'South West',     owner: 'Joel', seasons: 2, average: '15.50', championships: 0 },
   { name: 'HemoGoblins',         logo: '/images/teams/hemo-goblins.png',        color: '#B91C1C', division: 'South Central',  owner: 'Sam',  seasons: 6, average: '5.17',  championships: 3 },
   { name: 'Jawbreakers',         logo: '/images/teams/jawbreakers.png',         color: '#EAB308', division: 'Pacific Coast',  owner: 'Joel', seasons: 3, average: '12.67', championships: 0 },
   { name: 'Mowers',              logo: '/images/teams/mowers.png',              color: '#15803D', division: 'Great Lakes',    owner: 'Jeff', seasons: 6, average: '9.50',  championships: 1 },
   { name: 'Navigators',          logo: '/images/teams/navigators.png',          color: '#92400E', division: 'South East',     owner: 'Joel', seasons: 1, average: '26.00', championships: 0 },
   { name: 'Orcas',               logo: '/images/teams/orcas.png',               color: '#1E3A8A', division: 'South East',     owner: 'Other',seasons: 6, average: '14.17', championships: 0 },
-  { name: 'Oysterium',           logo: '/images/mml-logo.png',                  color: '#4D7C0F', division: 'Relegated',      owner: 'Sam',  seasons: 2, average: '13.00', championships: 0 },
+  { name: 'Oysterium',           logo: '/images/mml-logo.png',                  color: '#4D7C0F', division: 'Relegated',      owner: 'TBD',  seasons: 2, average: '13.00', championships: 0 },
   { name: 'Pengys',              logo: '/images/teams/pengys.png',              color: '#111827', division: 'Great Plains',   owner: 'Sam',  seasons: 6, average: '7.67',  championships: 0 },
   { name: 'Peppermint Barks',    logo: '/images/teams/peppermint-barks.png',    color: '#DC2626', division: 'New England',    owner: 'Jeff', seasons: 1, average: '20.00', championships: 0 },
   { name: 'Peregrine',           logo: '/images/teams/peregrine.png',           color: '#0F766E', division: 'Rocky Mountains',owner: 'Sam',  seasons: 3, average: '10.67', championships: 0 },
@@ -289,6 +289,7 @@ function TeamBanner({ team }: { team: typeof teams[number] }) {
         transition: 'all 0.18s ease',
       }}
     >
+      {/* Faded center background logo */}
       <img
         src={team.logo}
         alt=""
@@ -306,6 +307,8 @@ function TeamBanner({ team }: { team: typeof teams[number] }) {
           filter: 'grayscale(30%)',
         }}
       />
+
+      {/* Dark left overlay */}
       <div style={{
         position: 'absolute',
         left: 0, top: 0, bottom: 0,
@@ -313,6 +316,8 @@ function TeamBanner({ team }: { team: typeof teams[number] }) {
         background: 'linear-gradient(to right, rgba(0,0,0,0.55) 0%, transparent 100%)',
         pointerEvents: 'none',
       }} />
+
+      {/* Team name */}
       <div style={{ position: 'relative', zIndex: 1, paddingLeft: 20, flex: 1 }}>
         <span style={{
           fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
@@ -342,7 +347,9 @@ function TeamBanner({ team }: { team: typeof teams[number] }) {
           </span>
         )}
       </div>
-      <div style={{
+
+      {/* Stats — hidden on mobile */}
+      <div className="banner-stats" style={{
         position: 'relative',
         zIndex: 1,
         display: 'flex',
@@ -379,6 +386,8 @@ function TeamBanner({ team }: { team: typeof teams[number] }) {
             </span>
           </div>
         ))}
+
+        {/* Logo */}
         <img
           src={team.logo}
           alt={team.name}
@@ -393,7 +402,9 @@ function TeamBanner({ team }: { team: typeof teams[number] }) {
           }}
         />
       </div>
-      <div style={{
+
+      {/* Arrow — hidden on mobile */}
+      <div className="banner-arrow" style={{
         position: 'relative',
         zIndex: 1,
         width: 36,
@@ -427,211 +438,61 @@ function scrollToDiv(division: string) {
 function TeamsListPage() {
   const [activeDiv, setActiveDiv] = useState<string | null>(null)
 
-const activeDivisions = DIVISION_ORDER.filter(
-  (d) => d !== 'Relegated' && teams.some((t) => t.division === d)
-)
-    return (
+  const activeDivisions = DIVISION_ORDER.filter(
+    (d) => d !== 'Relegated' && teams.some((t) => t.division === d)
+  )
+
+  return (
     <main style={{ background: '#fff' }}>
+      <style>{`
+        @media (max-width: 640px) {
+          .banner-stats { display: none !important; }
+          .banner-arrow { display: none !important; }
+        }
+      `}</style>
+
       {/* ── Page hero ── */}
-      <section
-        style={{
-          background: '#1a2a6e',
-          position: 'relative',
-          overflow: 'hidden',
-          paddingBottom: 0,
-        }}
-      >
-        {/* Diagonal stripes */}
+      <section style={{ background: '#1a2a6e', position: 'relative', overflow: 'hidden', paddingBottom: 0 }}>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-          <div style={{
-            position: 'absolute',
-            width: '160%', height: '100%',
-            background: '#141f55',
-            transform: 'skewX(-18deg) translateX(-20%)',
-            top: 0, left: '30%',
-          }} />
-          <div style={{
-            position: 'absolute',
-            width: '70%', height: '100%',
-            background: '#0d1540',
-            transform: 'skewX(-18deg) translateX(-10%)',
-            top: 0, left: '50%',
-            opacity: 0.7,
-          }} />
-          {/* Accent slash thick */}
-          <div style={{
-            position: 'absolute',
-            width: 8, height: '130%',
-            background: '#C8102E',
-            transform: 'skewX(-18deg)',
-            top: '-15%', left: '48%',
-            opacity: 0.9,
-          }} />
-          {/* Accent slash thin */}
-          <div style={{
-            position: 'absolute',
-            width: 3, height: '130%',
-            background: '#e84060',
-            transform: 'skewX(-18deg)',
-            top: '-15%', left: '49.5%',
-            opacity: 0.5,
-          }} />
-          {/* Second accent pair */}
-          <div style={{
-            position: 'absolute',
-            width: 4, height: '130%',
-            background: '#C8102E',
-            transform: 'skewX(-18deg)',
-            top: '-15%', left: '75%',
-            opacity: 0.3,
-          }} />
-          <div style={{
-            position: 'absolute',
-            width: 2, height: '130%',
-            background: '#e84060',
-            transform: 'skewX(-18deg)',
-            top: '-15%', left: '76%',
-            opacity: 0.2,
-          }} />
-          {/* Top edge accent */}
-          <div style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0,
-            height: 3,
-            background: '#C8102E',
-            opacity: 0.6,
-          }} />
-          {/* Watermark: MML logo */}
-          <img
-            src="/images/mml-logo.png"
-            alt=""
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              right: '-2%',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              height: '130%',
-              width: 'auto',
-              objectFit: 'contain',
-              opacity: 0.05,
-              filter: 'grayscale(100%) brightness(2)',
-              pointerEvents: 'none',
-            }}
-          />
+          <div style={{ position: 'absolute', width: '160%', height: '100%', background: '#141f55', transform: 'skewX(-18deg) translateX(-20%)', top: 0, left: '30%' }} />
+          <div style={{ position: 'absolute', width: '70%', height: '100%', background: '#0d1540', transform: 'skewX(-18deg) translateX(-10%)', top: 0, left: '50%', opacity: 0.7 }} />
+          <div style={{ position: 'absolute', width: 8, height: '130%', background: '#C8102E', transform: 'skewX(-18deg)', top: '-15%', left: '48%', opacity: 0.9 }} />
+          <div style={{ position: 'absolute', width: 3, height: '130%', background: '#e84060', transform: 'skewX(-18deg)', top: '-15%', left: '49.5%', opacity: 0.5 }} />
+          <div style={{ position: 'absolute', width: 4, height: '130%', background: '#C8102E', transform: 'skewX(-18deg)', top: '-15%', left: '75%', opacity: 0.3 }} />
+          <div style={{ position: 'absolute', width: 2, height: '130%', background: '#e84060', transform: 'skewX(-18deg)', top: '-15%', left: '76%', opacity: 0.2 }} />
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: '#C8102E', opacity: 0.6 }} />
+          <img src="/images/mml-logo.png" alt="" aria-hidden="true" style={{ position: 'absolute', right: '-2%', top: '50%', transform: 'translateY(-50%)', height: '130%', width: 'auto', objectFit: 'contain', opacity: 0.05, filter: 'grayscale(100%) brightness(2)', pointerEvents: 'none' }} />
         </div>
 
-        {/* Hero content */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            maxWidth: 1000,
-            margin: '0 auto',
-            padding: '3.5rem 1.5rem 0',
-            display: 'grid',
-            gridTemplateColumns: '1fr auto',
-            alignItems: 'center',
-            gap: '2rem',
-          }}
-        >
-          {/* Left: text */}
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '3.5rem 1.5rem 0', display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: '2rem' }}>
           <div>
-            {/* Badge */}
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              marginBottom: 16,
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(200,16,46,0.4)',
-              padding: '5px 14px 5px 10px',
-            }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 16, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(200,16,46,0.4)', padding: '5px 14px 5px 10px' }}>
               <span style={{ display: 'block', width: 20, height: 2, background: '#C8102E', flexShrink: 0 }} />
-              <span style={{
-                fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: '0.28em',
-                textTransform: 'uppercase',
-                color: '#C8102E',
-              }}>
+              <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C8102E' }}>
                 Franchise Directory
               </span>
             </div>
-
-            {/* Headline */}
-            <h1 style={{
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 900,
-              fontSize: 'clamp(42px, 6vw, 76px)',
-              textTransform: 'uppercase',
-              color: '#fff',
-              letterSpacing: '0.02em',
-              lineHeight: 0.92,
-              marginBottom: '1rem',
-              textShadow: '0 2px 20px rgba(0,0,0,0.4)',
-            }}>
+            <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(36px, 6vw, 76px)', textTransform: 'uppercase', color: '#fff', letterSpacing: '0.02em', lineHeight: 0.92, marginBottom: '1rem', textShadow: '0 2px 20px rgba(0,0,0,0.4)' }}>
               MML Teams
             </h1>
-
-            {/* Accent divider */}
             <div style={{ width: 48, height: 3, background: '#C8102E', marginBottom: '1rem' }} />
-
-            {/* Subtext */}
-            <p style={{
-              fontFamily: "'Barlow', Arial, sans-serif",
-              fontSize: 16,
-              color: 'rgba(255,255,255,0.55)',
-              letterSpacing: '0.02em',
-              marginBottom: '2rem',
-              maxWidth: 400,
-              lineHeight: 1.6,
-            }}>
-              {teams.length} franchises across {activeDivisions.length - 1} active divisions — sorted by average placement within each division.
+            <p style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 'clamp(13px, 2.5vw, 16px)', color: 'rgba(255,255,255,0.55)', letterSpacing: '0.02em', marginBottom: '2rem', maxWidth: 400, lineHeight: 1.6 }}>
+              {teams.length} franchises across {activeDivisions.length} active divisions — sorted by average placement within each division.
             </p>
           </div>
 
-          {/* Right: stat stack */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 2,
-            alignSelf: 'center',
-            paddingBottom: '2rem',
-          }}>
+          {/* Stat stack */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, alignSelf: 'center', paddingBottom: '2rem' }}>
             {[
               { num: String(teams.length), label: 'Total Franchises' },
-              { num: String(activeDivisions.length - 1), label: 'Active Divisions' },
+              { num: String(activeDivisions.length), label: 'Active Divisions' },
               { num: '6', label: 'Seasons Played' },
             ].map((s) => (
-              <div key={s.label} style={{
-                background: 'rgba(255,255,255,0.05)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderLeft: '3px solid #C8102E',
-                padding: '10px 20px',
-                minWidth: 140,
-              }}>
-                <span style={{
-                  display: 'block',
-                  fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 36,
-                  color: '#fff',
-                  lineHeight: 1,
-                }}>
+              <div key={s.label} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderLeft: '3px solid #C8102E', padding: '10px 20px', minWidth: 140 }}>
+                <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 36, color: '#fff', lineHeight: 1 }}>
                   {s.num}
                 </span>
-                <span style={{
-                  display: 'block',
-                  fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                  fontWeight: 700,
-                  fontSize: 9,
-                  letterSpacing: '0.22em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,0.4)',
-                  marginTop: 2,
-                }}>
+                <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 9, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginTop: 2 }}>
                   {s.label}
                 </span>
               </div>
@@ -639,27 +500,13 @@ const activeDivisions = DIVISION_ORDER.filter(
           </div>
         </div>
 
-        {/* ── Division jump nav ── */}
-        <div style={{
-          position: 'relative',
-          zIndex: 1,
-          maxWidth: 1000,
-          margin: '0 auto',
-          padding: '0 1.5rem',
-        }}>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 0,
-            marginTop: '1rem',
-          }}>
+        {/* Division jump nav */}
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '0 1.5rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 0, marginTop: '1rem' }}>
             {activeDivisions.map((division) => (
               <button
                 key={division}
-                onClick={() => {
-                  scrollToDiv(division)
-                  setActiveDiv(division)
-                }}
+                onClick={() => { scrollToDiv(division); setActiveDiv(division) }}
                 style={{
                   fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
                   fontWeight: 700,
@@ -670,17 +517,13 @@ const activeDivisions = DIVISION_ORDER.filter(
                   background: 'transparent',
                   border: 'none',
                   borderTop: activeDiv === division ? '3px solid #C8102E' : '3px solid transparent',
-                  padding: '12px 16px',
+                  padding: '12px 14px',
                   cursor: 'pointer',
                   transition: 'all 0.15s',
                   whiteSpace: 'nowrap',
                 }}
-                onMouseEnter={e => {
-                  if (activeDiv !== division) e.currentTarget.style.color = '#fff'
-                }}
-                onMouseLeave={e => {
-                  if (activeDiv !== division) e.currentTarget.style.color = 'rgba(255,255,255,0.45)'
-                }}
+                onMouseEnter={e => { if (activeDiv !== division) e.currentTarget.style.color = '#fff' }}
+                onMouseLeave={e => { if (activeDiv !== division) e.currentTarget.style.color = 'rgba(255,255,255,0.45)' }}
               >
                 {division}
               </button>
@@ -689,7 +532,6 @@ const activeDivisions = DIVISION_ORDER.filter(
         </div>
       </section>
 
-      {/* Red bottom border */}
       <div style={{ height: 3, background: '#C8102E' }} />
 
       {/* ── Divisions ── */}
@@ -702,44 +544,13 @@ const activeDivisions = DIVISION_ORDER.filter(
           if (divTeams.length === 0) return null
 
           return (
-            <div
-              key={division}
-              id={`div-${divSlug(division)}`}
-              style={{ marginBottom: '2.5rem', scrollMarginTop: 80 }}
-            >
-              <div style={{
-                display: 'flex',
-                alignItems: 'baseline',
-                gap: 10,
-                marginBottom: 10,
-                paddingBottom: 8,
-                borderBottom: '2px solid #e5e7eb',
-                position: 'relative',
-              }}>
-                <div style={{
-                  position: 'absolute',
-                  bottom: -2, left: 0,
-                  width: 36, height: 2,
-                  background: '#C8102E',
-                }} />
-                <h2 style={{
-                  fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 26,
-                  textTransform: 'uppercase',
-                  color: '#1a2a6e',
-                  letterSpacing: '0.03em',
-                }}>
+            <div key={division} id={`div-${divSlug(division)}`} style={{ marginBottom: '2.5rem', scrollMarginTop: 80 }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 10, paddingBottom: 8, borderBottom: '2px solid #e5e7eb', position: 'relative' }}>
+                <div style={{ position: 'absolute', bottom: -2, left: 0, width: 36, height: 2, background: '#C8102E' }} />
+                <h2 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 26, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.03em' }}>
                   {division}
                 </h2>
-                <span style={{
-                  fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                  fontWeight: 700,
-                  fontSize: 11,
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  color: '#9ca3af',
-                }}>
+                <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af' }}>
                   {divTeams.length} {divTeams.length === 1 ? 'team' : 'teams'}
                 </span>
               </div>
@@ -764,29 +575,10 @@ function TeamDetailPage() {
   if (!team) {
     return (
       <main style={{ maxWidth: 1000, margin: '0 auto', padding: '5rem 1.5rem' }}>
-        <h1 style={{
-          fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-          fontWeight: 900,
-          fontSize: 48,
-          textTransform: 'uppercase',
-          color: '#1a2a6e',
-        }}>
+        <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 48, textTransform: 'uppercase', color: '#1a2a6e' }}>
           Team Not Found
         </h1>
-        <Link
-          to="/teams"
-          style={{
-            display: 'inline-block',
-            marginTop: 20,
-            fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-            fontWeight: 700,
-            fontSize: 12,
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            color: '#C8102E',
-            textDecoration: 'none',
-          }}
-        >
+        <Link to="/teams" style={{ display: 'inline-block', marginTop: 20, fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C8102E', textDecoration: 'none' }}>
           ← Back to Teams
         </Link>
       </main>
@@ -797,141 +589,45 @@ function TeamDetailPage() {
 
   return (
     <main style={{ background: '#fff' }}>
-      <section
-        style={{
-          position: 'relative',
-          overflow: 'hidden',
-          background: team.color,
-          minHeight: 200,
-          display: 'flex',
-          alignItems: 'center',
-          borderBottom: '3px solid rgba(0,0,0,0.2)',
-        }}
-      >
+      <section style={{ position: 'relative', overflow: 'hidden', background: team.color, minHeight: 200, display: 'flex', alignItems: 'center', borderBottom: '3px solid rgba(0,0,0,0.2)' }}>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-          <div style={{
-            position: 'absolute',
-            width: '70%', height: '100%',
-            background: 'rgba(0,0,0,0.2)',
-            transform: 'skewX(-18deg)',
-            right: '-10%', top: 0,
-          }} />
+          <div style={{ position: 'absolute', width: '70%', height: '100%', background: 'rgba(0,0,0,0.2)', transform: 'skewX(-18deg)', right: '-10%', top: 0 }} />
         </div>
-        <img
-          src={team.logo}
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            left: '50%', top: '50%',
-            transform: 'translate(-50%, -50%)',
-            height: '140%', width: 'auto',
-            objectFit: 'contain',
-            opacity: 0.1,
-            pointerEvents: 'none',
-          }}
-        />
-        <div style={{
-          position: 'absolute', left: 0, top: 0, bottom: 0, width: '55%',
-          background: 'linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%)',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'relative', zIndex: 1,
-          maxWidth: 1000, margin: '0 auto', padding: '2.5rem 1.5rem',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          width: '100%', gap: '1.5rem',
-        }}>
+        <img src={team.logo} alt="" aria-hidden="true" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', height: '140%', width: 'auto', objectFit: 'contain', opacity: 0.1, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '55%', background: 'linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 1000, margin: '0 auto', padding: '2.5rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: '1.5rem' }}>
           <div>
-            <Link
-              to="/teams"
-              style={{
-                fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                fontWeight: 700, fontSize: 11, letterSpacing: '0.2em',
-                textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)',
-                textDecoration: 'none', display: 'inline-block', marginBottom: 12,
-              }}
-            >
+            <Link to="/teams" style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', display: 'inline-block', marginBottom: 12 }}>
               ← All Teams
             </Link>
-            <div style={{
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 700, fontSize: 10, letterSpacing: '0.25em',
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)',
-              display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6,
-            }}>
+            <div style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)', display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
               <span style={{ width: 16, height: 2, background: 'rgba(255,255,255,0.4)', display: 'block' }} />
               {team.division} Division · {team.owner}
             </div>
-            <h1 style={{
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 900,
-              fontSize: 'clamp(40px, 6vw, 72px)',
-              textTransform: 'uppercase',
-              color: '#fff',
-              lineHeight: 0.95,
-              letterSpacing: '0.02em',
-              marginBottom: 6,
-              textShadow: '0 2px 8px rgba(0,0,0,0.3)',
-            }}>
+            <h1 style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(36px, 6vw, 72px)', textTransform: 'uppercase', color: '#fff', lineHeight: 0.95, letterSpacing: '0.02em', marginBottom: 6, textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>
               {team.name}
             </h1>
             {team.championships > 0 && (
-              <div style={{
-                display: 'inline-flex', alignItems: 'center', gap: 6,
-                background: 'rgba(255,255,255,0.15)',
-                padding: '3px 10px',
-                fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                fontWeight: 700, fontSize: 11, letterSpacing: '0.2em',
-                textTransform: 'uppercase', color: '#fff',
-              }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.15)', padding: '3px 10px', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#fff' }}>
                 🏆 {team.championships}× League Champion
               </div>
             )}
           </div>
-          <img
-            src={team.logo}
-            alt={team.name}
-            style={{
-              height: 140, width: 140, objectFit: 'contain',
-              filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))',
-              flexShrink: 0,
-            }}
-          />
+          <img src={team.logo} alt={team.name} style={{ height: 'clamp(80px, 14vw, 140px)', width: 'clamp(80px, 14vw, 140px)', objectFit: 'contain', filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.5))', flexShrink: 0 }} />
         </div>
       </section>
 
-      <div style={{
-        background: '#fff',
-        borderBottom: '3px solid #C8102E',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-      }}>
+      <div style={{ background: '#fff', borderBottom: '3px solid #C8102E', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {[
           { num: String(team.seasons), label: 'Seasons Played' },
           { num: team.average,         label: 'Avg. Placement' },
           { num: String(team.championships), label: 'Championships' },
         ].map((s, i) => (
-          <div key={s.label} style={{
-            textAlign: 'center',
-            padding: '1rem 0.5rem',
-            borderRight: i < 2 ? '1px solid #e5e7eb' : 'none',
-          }}>
-            <span style={{
-              display: 'block',
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 900, fontSize: 36,
-              color: '#1a2a6e', lineHeight: 1,
-            }}>
+          <div key={s.label} style={{ textAlign: 'center', padding: '1rem 0.5rem', borderRight: i < 2 ? '1px solid #e5e7eb' : 'none' }}>
+            <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 'clamp(24px, 5vw, 36px)', color: '#1a2a6e', lineHeight: 1 }}>
               {s.num}
             </span>
-            <span style={{
-              display: 'block',
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 700, fontSize: 10,
-              letterSpacing: '0.2em', textTransform: 'uppercase',
-              color: '#9ca3af', marginTop: 3,
-            }}>
+            <span style={{ display: 'block', fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 'clamp(8px, 2vw, 10px)', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af', marginTop: 3 }}>
               {s.label}
             </span>
           </div>
@@ -941,76 +637,27 @@ function TeamDetailPage() {
       <div style={{ maxWidth: 1000, margin: '0 auto', padding: '2.5rem 1.5rem' }}>
         {results.length > 0 ? (
           <div>
-            <div style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 900, fontSize: 18,
-              textTransform: 'uppercase', color: '#1a2a6e',
-              letterSpacing: '0.05em', marginBottom: 12,
-            }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 18, textTransform: 'uppercase', color: '#1a2a6e', letterSpacing: '0.05em', marginBottom: 12 }}>
               <span style={{ width: 16, height: 2, background: '#C8102E', display: 'block' }} />
               Season Results
             </div>
             <div style={{ border: '1px solid #e5e7eb' }}>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '80px 80px 1fr 80px',
-                padding: '7px 16px',
-                background: '#f4f6fb',
-                borderBottom: '1px solid #e5e7eb',
-              }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '80px 80px 1fr 80px', padding: '7px 16px', background: '#f4f6fb', borderBottom: '1px solid #e5e7eb' }}>
                 {['Season', 'Year', 'Tournament', 'Place'].map((h) => (
-                  <span key={h} style={{
-                    fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                    fontWeight: 700, fontSize: 10,
-                    letterSpacing: '0.2em', textTransform: 'uppercase',
-                    color: '#9ca3af',
-                    textAlign: h === 'Place' ? 'right' : 'left',
-                  }}>
+                  <span key={h} style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#9ca3af', textAlign: h === 'Place' ? 'right' : 'left' }}>
                     {h}
                   </span>
                 ))}
               </div>
               {results.map((r, i) => (
-                <div key={r.season} style={{
-                  display: 'grid',
-                  gridTemplateColumns: '80px 80px 1fr 80px',
-                  padding: '10px 16px',
-                  borderBottom: i < results.length - 1 ? '1px solid #f3f4f6' : 'none',
-                  background: r.place === 1 ? '#fff7ed' : '#fff',
-                  borderLeft: r.place === 1 ? `3px solid ${team.color}` : '3px solid transparent',
-                  alignItems: 'center',
-                }}>
-                  <span style={{
-                    fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                    fontWeight: 700, fontSize: 13,
-                    color: '#9ca3af', letterSpacing: '0.1em',
-                  }}>
-                    {r.season}
-                  </span>
-                  <span style={{
-                    fontFamily: "'Barlow', Arial, sans-serif",
-                    fontSize: 13, color: '#6b7280',
-                  }}>
-                    {r.year}
-                  </span>
-                  <span style={{
-                    fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                    fontWeight: 700, fontSize: 15,
-                    color: '#111827',
-                    display: 'flex', alignItems: 'center', gap: 6,
-                  }}>
+                <div key={r.season} style={{ display: 'grid', gridTemplateColumns: '80px 80px 1fr 80px', padding: '10px 16px', borderBottom: i < results.length - 1 ? '1px solid #f3f4f6' : 'none', background: r.place === 1 ? '#fff7ed' : '#fff', borderLeft: r.place === 1 ? `3px solid ${team.color}` : '3px solid transparent', alignItems: 'center' }}>
+                  <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 13, color: '#9ca3af', letterSpacing: '0.1em' }}>{r.season}</span>
+                  <span style={{ fontFamily: "'Barlow', Arial, sans-serif", fontSize: 13, color: '#6b7280' }}>{r.year}</span>
+                  <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 15, color: '#111827', display: 'flex', alignItems: 'center', gap: 6 }}>
                     {r.tournament}
-                    {r.place === 1 && (
-                      <span style={{ fontSize: 14 }}>🏆</span>
-                    )}
+                    {r.place === 1 && <span style={{ fontSize: 14 }}>🏆</span>}
                   </span>
-                  <span style={{
-                    fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-                    fontWeight: 900, fontSize: 20,
-                    color: r.place <= 3 ? team.color : '#6b7280',
-                    textAlign: 'right',
-                  }}>
+                  <span style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 900, fontSize: 20, color: r.place <= 3 ? team.color : '#6b7280', textAlign: 'right' }}>
                     {placeSuffix(r.place)}
                   </span>
                 </div>
@@ -1018,17 +665,8 @@ function TeamDetailPage() {
             </div>
           </div>
         ) : (
-          <div style={{
-            padding: '3rem',
-            textAlign: 'center',
-            border: '1px dashed #e5e7eb',
-          }}>
-            <p style={{
-              fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif",
-              fontWeight: 700, fontSize: 16,
-              textTransform: 'uppercase', color: '#9ca3af',
-              letterSpacing: '0.1em',
-            }}>
+          <div style={{ padding: '3rem', textAlign: 'center', border: '1px dashed #e5e7eb' }}>
+            <p style={{ fontFamily: "'Barlow Condensed', Arial Narrow, Arial, sans-serif", fontWeight: 700, fontSize: 16, textTransform: 'uppercase', color: '#9ca3af', letterSpacing: '0.1em' }}>
               Season results coming soon
             </p>
           </div>
