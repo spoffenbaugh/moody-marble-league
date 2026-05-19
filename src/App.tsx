@@ -520,8 +520,8 @@ export default function App() {
         <Routes>
           <Route path="/"               element={<HomePage />} />
           <Route path="/teams/"        element={<TeamsPage />} />
-          <Route path="/article"       element={<ArticlesPage />} />
-          <Route path="/article/:slug" element={<ArticlePage />} />
+          <Route path="/articles"       element={<ArticlesPage />} />
+          <Route path="/articles/:slug" element={<ArticlePage />} />
           <Route path="/history/*"      element={<HistoryPage />} />
         </Routes>
         <Footer />
