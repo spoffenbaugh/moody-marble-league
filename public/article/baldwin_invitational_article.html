@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Baldwin Invitational — MML Season One</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-mid: #3d3a34; --ink-muted: #6b6760; --ink-faint: #9e9b96;
+    --paper: #faf8f4; --paper-warm: #f2ede3; --paper-rule: #e0d9ce;
+    --red: #c0392b; --navy: #1a2a4a; --gold: #b8860b; --gold-light: #f0d060;
+    --blue-accent: #1d5fa8;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --display: 'Playfair Display', Georgia, serif;
+    --condensed: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+
+  .masthead { background: var(--navy); padding: 18px 0 14px; text-align: center; border-bottom: 4px solid var(--red); }
+  .masthead-league { font-family: var(--condensed); font-weight: 800; font-size: 13px; letter-spacing: 0.22em; color: #aab4c8; text-transform: uppercase; margin-bottom: 4px; }
+  .masthead-title { font-family: var(--condensed); font-weight: 800; font-size: 28px; letter-spacing: 0.06em; color: #fff; text-transform: uppercase; }
+  .masthead-title span { color: var(--gold-light); }
+
+  .hero { background: var(--navy); padding: 64px 20px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,255,255,0.018) 24px, rgba(255,255,255,0.018) 25px); pointer-events: none; }
+  .hero-eyebrow { font-family: var(--condensed); font-weight: 700; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px; }
+  .hero-headline { font-family: var(--display); font-weight: 900; font-size: clamp(38px, 6vw, 72px); line-height: 1.08; color: #fff; max-width: 820px; margin: 0 auto 24px; }
+  .hero-deck { font-family: var(--serif); font-size: 19px; color: #c2c9d8; max-width: 640px; margin: 0 auto 36px; line-height: 1.55; font-weight: 300; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .hero-meta-item { font-family: var(--condensed); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8898b4; }
+  .hero-meta-sep { color: #3d5070; font-size: 10px; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  .container-wide { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  .rule-ornamental { display: flex; align-items: center; gap: 16px; margin: 48px 0 40px; }
+  .rule-ornamental::before, .rule-ornamental::after { content: ''; flex: 1; height: 1px; background: var(--paper-rule); }
+  .rule-ornamental-glyph { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); }
+
+  .article-body { padding: 52px 0 0; }
+  .article-body p { margin-bottom: 1.5em; font-size: 18px; color: var(--ink-mid); font-weight: 300; }
+  .article-body p.lead { font-size: 21px; line-height: 1.6; color: var(--ink); font-weight: 400; margin-bottom: 1.8em; }
+  .dropcap::first-letter { font-family: var(--display); font-weight: 900; font-size: 5.4em; line-height: 0.78; float: left; margin: 0.04em 0.09em 0 0; color: var(--red); }
+
+  .section-heading { font-family: var(--condensed); font-weight: 800; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; padding-top: 8px; }
+  h2.article-h2 { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1.2; color: var(--ink); margin-bottom: 18px; }
+  h3.article-h3 { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.25; color: var(--ink); margin-bottom: 14px; }
+
+  .pullquote { border-left: 4px solid var(--red); margin: 40px 0; padding: 8px 0 8px 28px; }
+  .pullquote p { font-family: var(--display); font-style: italic; font-size: 24px !important; line-height: 1.4 !important; color: var(--ink) !important; font-weight: 400 !important; margin-bottom: 10px !important; }
+  .pullquote cite { font-family: var(--condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); font-style: normal; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2px; margin: 40px 0; border: 1px solid var(--paper-rule); background: var(--paper-rule); }
+  .stat-cell { background: var(--paper); padding: 20px 18px; text-align: center; }
+  .stat-num { font-family: var(--condensed); font-weight: 800; font-size: 40px; line-height: 1; color: var(--red); display: block; margin-bottom: 6px; }
+  .stat-label { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+
+  .event-tracker { margin: 36px 0; overflow-x: auto; }
+  .event-tracker table { width: 100%; border-collapse: collapse; font-family: var(--condensed); font-size: 13px; min-width: 680px; }
+  .event-tracker th { background: var(--navy); color: #8898b4; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,0.07); }
+  .event-tracker th.team-col { text-align: left; padding-left: 14px; min-width: 140px; }
+  .event-tracker td { padding: 9px 8px; text-align: center; border-bottom: 1px solid var(--paper-rule); border-right: 1px solid var(--paper-rule); color: var(--ink-mid); font-weight: 600; }
+  .event-tracker td.team-col { text-align: left; padding-left: 14px; font-weight: 700; color: var(--ink); font-size: 14px; }
+  .event-tracker td.total-col { font-weight: 800; color: var(--ink); background: var(--paper-warm); }
+  .event-tracker tr:last-child td { border-bottom: none; }
+  .event-tracker .div-header td { background: var(--paper-warm); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); padding: 8px 14px; border-bottom: 2px solid var(--paper-rule); }
+  .score-high { background: rgba(192,57,43,0.10); color: #922b21 !important; font-weight: 800 !important; }
+  .score-zero { color: #c8c4be !important; font-weight: 400 !important; }
+  .score-max { background: rgba(192,57,43,0.20); color: #922b21 !important; font-weight: 800 !important; }
+
+  .momentum-grid { margin: 36px 0; }
+  .momentum-row { display: flex; align-items: baseline; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--paper-rule); font-family: var(--condensed); }
+  .momentum-row:last-child { border-bottom: none; }
+  .momentum-event { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); min-width: 78px; }
+  .momentum-leader { font-size: 16px; font-weight: 700; color: var(--ink); min-width: 200px; }
+  .momentum-leader span { color: var(--red); }
+  .momentum-note { font-size: 13px; color: var(--ink-muted); flex: 1; line-height: 1.4; }
+
+  .standings-section { background: var(--navy); padding: 52px 0 60px; margin: 60px 0 0; }
+  .standings-header { text-align: center; margin-bottom: 36px; }
+  .standings-eyebrow { font-family: var(--condensed); font-weight: 700; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+  .standings-title { font-family: var(--display); font-weight: 900; font-size: 36px; color: #fff; }
+  .standings-table { width: 100%; border-collapse: collapse; font-family: var(--condensed); }
+  .standings-table thead tr { border-bottom: 2px solid rgba(255,255,255,0.15); }
+  .standings-table th { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #7a8ba8; padding: 10px 14px; text-align: left; }
+  .standings-table th.right { text-align: right; }
+  .standings-table td { padding: 12px 14px; font-size: 16px; font-weight: 600; color: #c8d0de; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .standings-table td.right { text-align: right; color: #8898b4; }
+  .standings-table tr.podium-1 td { color: #fff; }
+  .standings-table tr.podium-1 td.team-name { color: var(--gold-light); font-size: 17px; }
+  .standings-table tr.podium-2 td.team-name { color: #cdd5e0; }
+  .standings-table tr.podium-3 td.team-name { color: #b4a87c; }
+  .place-num { font-size: 15px; color: #4a5870; font-weight: 600; }
+  .standings-table tr.podium-1 .place-num { color: var(--gold-light); font-size: 17px; }
+  .standings-table tr.podium-2 .place-num { color: #aab4c8; }
+  .standings-table tr.podium-3 .place-num { color: #b4a87c; }
+  .owner-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+  .owner-sam { background: rgba(200,80,80,0.25); color: #e8a8a8; }
+  .owner-jeff { background: rgba(80,140,200,0.25); color: #a8c8e8; }
+  .owner-joel { background: rgba(80,190,140,0.25); color: #a8e8cc; }
+
+  .division-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 36px 0; }
+  .division-card { border: 1px solid var(--paper-rule); background: #fff; padding: 20px; }
+  .division-card-head { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--paper-rule); }
+  .division-card-head.north { border-color: var(--blue-accent); }
+  .division-card-head.south { border-color: var(--red); }
+  .division-card-head.east { border-color: #2e7d52; }
+  .division-card-head.west { border-color: var(--gold); }
+  .division-team { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-family: var(--condensed); font-size: 15px; font-weight: 600; color: var(--ink); border-bottom: 1px solid #f0ece4; }
+  .division-team:last-child { border-bottom: none; }
+  .division-score { font-size: 14px; color: var(--ink-muted); font-weight: 400; }
+  .div-rank { font-size: 12px; color: var(--ink-faint); margin-right: 8px; }
+
+  .article-section { margin-bottom: 52px; }
+
+  .legacy-box { background: var(--paper-warm); border-left: 4px solid var(--gold); padding: 28px 32px; margin: 44px 0; }
+  .legacy-box-label { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .legacy-box h3 { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--ink); margin-bottom: 12px; }
+  .legacy-box p { font-size: 16px !important; color: var(--ink-mid) !important; font-weight: 300 !important; margin-bottom: 0 !important; }
+
+  .callout-box { border: 1px solid var(--paper-rule); border-top: 3px solid var(--red); padding: 24px 28px; margin: 36px 0; background: #fff; }
+  .callout-box-label { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .callout-box p { font-size: 16px !important; color: var(--ink-mid) !important; font-weight: 300 !important; margin-bottom: 0 !important; }
+
+  .article-footer { background: var(--ink); padding: 40px 24px; text-align: center; }
+  .footer-league { font-family: var(--condensed); font-weight: 800; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+  .footer-sub { font-family: var(--condensed); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #5a6880; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 44px 16px 40px; }
+    .hero-headline { font-size: 34px; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .division-grid { grid-template-columns: 1fr 1fr; }
+    .momentum-leader { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-league">Moody Marble League · Official Record</div>
+  <div class="masthead-title">MML <span>Season One</span></div>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">Season One · Spokane, Washington · 2016</p>
+  <h1 class="hero-headline">The Baldwin Invitational</h1>
+  <p class="hero-deck">Where three friends with tape measure tracks, hot glue, and a bag of marbles built something that would outlast college, outlast geography, and outlast any reasonable expectation of longevity.</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item">16 Teams</span>
+    <span class="hero-meta-sep">◆</span>
+    <span class="hero-meta-item">4 Divisions</span>
+    <span class="hero-meta-sep">◆</span>
+    <span class="hero-meta-item">10 Events</span>
+    <span class="hero-meta-sep">◆</span>
+    <span class="hero-meta-item">Baldwin Ave · Spokane, WA</span>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <div class="article-body">
+
+      <div class="article-section">
+        <p class="lead dropcap">It began with a bag of marbles and a tape measure. Three students at Moody Bible Institute in Spokane, Washington — Jeff, Joel, and Sam — built racing tracks from tape measure tapes, old store banner signs, scraps of wood, nails, and hot glue. They seeded sixteen teams into four divisions, argued over the draw, and sent their marbles rolling toward a finish line none of them could have predicted would still matter a decade later.</p>
+        <p>The year was 2016. The house was on Baldwin Avenue. The league they founded — the Moody Marble League — was named after nothing grander than the street they lived on. It didn't need to be grander. The Baldwin Invitational, Season One of what would become six seasons and counting, was the beginning of everything.</p>
+        <p>Jeff owned five teams. Sam owned five. Joel owned six. Sixteen total. They seeded the field with a preliminary race, sorted into four divisions of four, and contested ten events. Teams earned points relative to their divisional opponents each event — a maximum of 15, a minimum of zero. The team with the highest cumulative total across all ten events would be crowned the first champion in MML history.</p>
+        <p>Nobody knew it would come down to the very last marble of the very last event, decided by a single point.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell"><span class="stat-num">16</span><span class="stat-label">Teams</span></div>
+        <div class="stat-cell"><span class="stat-num">10</span><span class="stat-label">Events</span></div>
+        <div class="stat-cell"><span class="stat-num">92</span><span class="stat-label">Winning Score</span></div>
+        <div class="stat-cell"><span class="stat-num">1 pt</span><span class="stat-label">Championship Margin</span></div>
+      </div>
+
+      <div class="article-section">
+        <div class="section-heading">The Draw</div>
+        <h2 class="article-h2">Four Divisions, Sixteen Contenders</h2>
+        <p>The draw sorted sixteen teams into four divisions of four. Division North featured the Angels, Mowers, Expressos, and Purps. Division South grouped the Broncos (later Sorbetbes), Trinitarians, Deep Sky, and Orcas. Division East had Earth (later Yak Attack), Pengys, Sin, and Cheapskates. Division West brought together the HemoGoblins, Vanilla Thunder, SSS, and Yellow Fever — the weakest group on paper, and the one that produced the champion.</p>
+        <p>Points accumulated within divisions each event, but the overall standings were cumulative across all sixteen teams. Consistency mattered more than peaks. A team that finished near the top every event could outrank a team that spiked once and went cold.</p>
+      </div>
+
+      <div class="division-grid">
+        <div class="division-card">
+          <div class="division-card-head north">Division 1 — North</div>
+          <div class="division-team"><span><span class="div-rank">1</span>Mowers</span><span class="division-score">91 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Angels</span><span class="division-score">84 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Expressos</span><span class="division-score">71 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Purps</span><span class="division-score">67 pts</span></div>
+        </div>
+        <div class="division-card">
+          <div class="division-card-head south">Division 2 — South</div>
+          <div class="division-team"><span><span class="div-rank">1</span>Broncos</span><span class="division-score">87 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Trinitarians</span><span class="division-score">73 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Deep Sky</span><span class="division-score">73 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Orcas</span><span class="division-score">70 pts</span></div>
+        </div>
+        <div class="division-card">
+          <div class="division-card-head east">Division 3 — East</div>
+          <div class="division-team"><span><span class="div-rank">1</span>Earth</span><span class="division-score">90 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Pengys</span><span class="division-score">87 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Sin</span><span class="division-score">81 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Cheapskates</span><span class="division-score">61 pts</span></div>
+        </div>
+        <div class="division-card">
+          <div class="division-card-head west">Division 4 — West</div>
+          <div class="division-team"><span><span class="div-rank">1</span>HemoGoblins</span><span class="division-score">92 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Vanilla Thunder</span><span class="division-score">69 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>SSS</span><span class="division-score">54 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Yellow Fever</span><span class="division-score">50 pts</span></div>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="section-heading">Event One</div>
+        <h2 class="article-h2">The Orcas Win the First Event in MML History</h2>
+        <p>Nobody who watched Event 1 could have predicted the season that followed. The Orcas — who would finish 11th overall — scored the maximum 15 points in the Baldwin Invitational's opening event, becoming the first team to win anything in MML history. Purps finished second with 14. Deep Sky took third with 13. In the West, the HemoGoblins opened with a modest 10 points, and Yellow Fever managed just 1.</p>
+        <p>The early cumulative standings: Mowers led with 12, Earth close behind at 11, HemoGoblins at 10. The Broncos sat at just 3 after Event 1 — a slow start that temporarily masked what was coming from Division South.</p>
+
+        <div class="callout-box">
+          <div class="callout-box-label">First in MML History</div>
+          <p>The Orcas won Events 1, 6, and 7 — the most event wins of any team in the Baldwin Invitational. They scored the maximum 15 points in all three. They finished 11th overall. No franchise in MML history has produced a wider gap between event-level brilliance and season-total result. The Orcas' Event 1 win remains the most cited footnote of an otherwise disappointing franchise arc.</p>
+        </div>
+      </div>
+
+      <div class="article-section">
+        <div class="section-heading">Events 1–5</div>
+        <h2 class="article-h2">The Mowers Build a Lead, Chaos Reigns</h2>
+        <p>Through the first five events, the Baldwin Invitational looked like a Mowers coronation. Jeff's team was grinding out steady points: 12, 14, 8, 10, 14 across Events 1 through 5 — a cumulative 58 points that built a growing cushion. No signature 15-point maximum, but no zeros either. They were doing what champions do: showing up every time.</p>
+        <p>Event 2 belonged to the Trinitarians, who maxed out at 15 points — their only event win of the season. The Mowers finished second with 14. Event 3 was the Broncos' finest performance, a 15-point maximum that announced them as contenders; the HemoGoblins were close behind with 14. Event 4 brought the Angels their 15-point maximum — their only event win of the season. Event 5 went to Vanilla Thunder, whose 15-point score was the standout result from an otherwise quiet West Division.</p>
+        <p>Meanwhile, some teams were already falling apart. SSS had collected zero points in Events 3 and 5 — two blanks in the first five events. Expressos scored zero in Event 1. The Orcas, despite their historic opening win, posted zeros in Events 2 and 4. The system was merciless: one bad event could erase multiple strong ones.</p>
+        <p>After five events: Mowers 58, Earth 52, Broncos 49, HemoGoblins 46. The HemoGoblins were in fourth, quiet, accumulating. That was about to change.</p>
+      </div>
+
+      <div class="article-section">
+        <div class="section-heading">Events 6–8</div>
+        <h2 class="article-h2">The Lead Changes Hands. Three Times.</h2>
+        <p>Event 6 produced the season's first real shock. The Orcas — in the midst of a deeply puzzling season — posted their second maximum of 15 points. Yellow Fever, who had looked hopeless, scored 14. But the bigger story was what happened to the Mowers: they scored zero in Event 6, their worst result of the entire season, and stalled at 58 while the field moved. After six events, Earth led for the first time all season with 65 cumulative points. The Mowers were at 58. The HemoGoblins were at 54.</p>
+        <p>Event 7 completed the Orcas' extraordinary hat-trick — three event wins in a single season, all at the maximum of 15 points, for a team heading toward 11th place. The Angels scored 14. The HemoGoblins scored 13. After seven events, the race had tightened into something extraordinary: HemoGoblins 67, Earth 67, Mowers 66. Three teams separated by a single point with three events remaining.</p>
+
+        <div class="pullquote">
+          <p>"After seven events, the HemoGoblins, Earth, and the Mowers were separated by a single point. The race was alive."</p>
+          <cite>Baldwin Invitational · Event 7 Standings</cite>
+        </div>
+
+        <p>Event 8 was the Mowers' finest hour. They posted the maximum 15 points — their best single-event score of the season — while the Expressos scored 14 and the HemoGoblins took 13. The Mowers had wrestled the lead back. After eight events: Mowers 81, HemoGoblins 80, Earth 76. One point separated first from second. Earth had fallen four back. Going into the final two events, this appeared to be a two-team race.</p>
+      </div>
+
+      <div class="article-section">
+        <div class="section-heading">Events 9–10</div>
+        <h2 class="article-h2">The Final Two Events and a Championship Decided by One Point</h2>
+        <p>Event 9 belonged to the Pengys, who hit their 15-point maximum — their best single-event score of the season. Earth surged to a 14-point result, jumping back into championship contention. The Broncos scored 13. After nine events, the standings shuffled again: Earth 90, Mowers 88, HemoGoblins 85. Earth had reclaimed the lead. The Mowers were two back. The HemoGoblins were five back with one event remaining.</p>
+        <p>On paper, it looked like Earth versus the Mowers. The HemoGoblins needed to outscore both teams by five points in a single event to win. It seemed unlikely.</p>
+        <p>What happened in Event 10 is the defining moment of the Baldwin Invitational. Yellow Fever — who had been one of the worst teams in the field all season — scored the maximum 15 points in the final event. Their only event win of the entire season, scored when it could not meaningfully improve their last-place overall standing. But it reshaped everything around them. Deep Sky scored 14. The Broncos scored 13. The Mowers, who had led for the majority of ten events, scored only 3. Earth scored zero.</p>
+        <p>The HemoGoblins scored 7.</p>
+        <p>Final standings: HemoGoblins 92. Mowers 91. Earth 90.</p>
+        <p>One point. Sam's team had won the first championship in MML history by the narrowest possible margin, over Jeff's Mowers, who had led the season for the majority of its ten events. It is the closest championship finish in league history. The Mowers didn't collapse — 91 points was a strong score. Earth simply ran out of room in the last event, scoring zero when they needed anything at all. And the HemoGoblins, patient and never once leading until the final tally, had been close enough the entire time to capitalize when the leaders faltered at the worst possible moment.</p>
+      </div>
+
+      <!-- MOMENTUM CHART -->
+      <div class="article-section">
+        <div class="section-heading">Race to the Title</div>
+        <h2 class="article-h2">How the Lead Changed — Event by Event</h2>
+        <div class="momentum-grid">
+          <div class="momentum-row">
+            <span class="momentum-event">After E1</span>
+            <span class="momentum-leader">Leader: <span>Mowers (12)</span></span>
+            <span class="momentum-note">HemoGoblins at 10. Earth at 11. Field tight across the board.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E2</span>
+            <span class="momentum-leader">Leader: <span>Mowers (26)</span></span>
+            <span class="momentum-note">Mowers pull ahead. Pengys surge to 21. HemoGoblins at 13.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E3</span>
+            <span class="momentum-leader">Leader: <span>Mowers (34)</span></span>
+            <span class="momentum-note">Broncos max-15 in E3. HemoGoblins close behind with 14 — now at 27.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E4</span>
+            <span class="momentum-leader">Leader: <span>Mowers (44)</span></span>
+            <span class="momentum-note">Earth at 40, Broncos at 40. HemoGoblins at 35.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E5</span>
+            <span class="momentum-leader">Leader: <span>Mowers (58)</span></span>
+            <span class="momentum-note">Mowers looking comfortable. Earth at 52. HemoGoblins at 46.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E6</span>
+            <span class="momentum-leader">Leader: <span>Earth (65)</span></span>
+            <span class="momentum-note">Mowers post zero in E6. Lead changes for the first time. Earth takes over.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E7</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins / Earth (67)</span></span>
+            <span class="momentum-note">Dead heat at the top. Mowers at 66. Three-way battle, three events left.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E8</span>
+            <span class="momentum-leader">Leader: <span>Mowers (81)</span></span>
+            <span class="momentum-note">Mowers post max-15. Reclaim lead by one over HemoGoblins (80). Earth at 76.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E9</span>
+            <span class="momentum-leader">Leader: <span>Earth (90)</span></span>
+            <span class="momentum-note">Earth surge on 14 points. Mowers at 88. HemoGoblins at 85. All three alive.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">Final (E10)</span>
+            <span class="momentum-leader">Champion: <span>HemoGoblins (92)</span></span>
+            <span class="momentum-note">Earth scores 0. Mowers score 3. HemoGoblins score 7. Win by 1 point.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL SCORE TABLE -->
+      <div class="article-section">
+        <div class="section-heading">Complete Scoring Record</div>
+        <h2 class="article-h2">All Ten Events, All Sixteen Teams</h2>
+        <div class="event-tracker">
+          <table>
+            <thead>
+              <tr>
+                <th class="team-col">Team</th>
+                <th>E1</th><th>E2</th><th>E3</th><th>E4</th><th>E5</th>
+                <th>E6</th><th>E7</th><th>E8</th><th>E9</th><th>E10</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="div-header"><td colspan="12">Division 1 — North</td></tr>
+              <tr>
+                <td class="team-col">The Mowers</td>
+                <td>12</td><td class="score-high">14</td><td>8</td><td>10</td><td class="score-high">14</td>
+                <td class="score-zero">0</td><td>8</td><td class="score-max">15</td><td>7</td><td>3</td>
+                <td class="total-col">91</td>
+              </tr>
+              <tr>
+                <td class="team-col">Angels</td>
+                <td>6</td><td>7</td><td>1</td><td class="score-max">15</td><td>7</td>
+                <td>9</td><td class="score-high">14</td><td>4</td><td>11</td><td>10</td>
+                <td class="total-col">84</td>
+              </tr>
+              <tr>
+                <td class="team-col">Expressos</td>
+                <td class="score-zero">0</td><td>10</td><td>5</td><td>3</td><td>10</td>
+                <td>4</td><td>11</td><td class="score-high">14</td><td>2</td><td>12</td>
+                <td class="total-col">71</td>
+              </tr>
+              <tr>
+                <td class="team-col">Purps</td>
+                <td class="score-high">14</td><td>1</td><td>10</td><td>9</td><td>1</td>
+                <td>10</td><td>6</td><td>3</td><td>8</td><td>5</td>
+                <td class="total-col">67</td>
+              </tr>
+              <tr class="div-header"><td colspan="12">Division 2 — South</td></tr>
+              <tr>
+                <td class="team-col">Broncos (Sorbetbes)</td>
+                <td>3</td><td>9</td><td class="score-max">15</td><td class="score-high">13</td><td>9</td>
+                <td>2</td><td class="score-zero">0</td><td>10</td><td class="score-high">13</td><td class="score-high">13</td>
+                <td class="total-col">87</td>
+              </tr>
+              <tr>
+                <td class="team-col">Trinitarians</td>
+                <td>7</td><td class="score-max">15</td><td>3</td><td class="score-high">14</td><td>5</td>
+                <td>7</td><td>1</td><td>11</td><td>6</td><td>4</td>
+                <td class="total-col">73</td>
+              </tr>
+              <tr>
+                <td class="team-col">Deep Sky</td>
+                <td class="score-high">13</td><td>5</td><td>12</td><td>7</td><td>4</td>
+                <td>5</td><td>7</td><td>2</td><td>4</td><td class="score-high">14</td>
+                <td class="total-col">73</td>
+              </tr>
+              <tr>
+                <td class="team-col">Orcas</td>
+                <td class="score-max">15</td><td class="score-zero">0</td><td>7</td><td class="score-zero">0</td><td>2</td>
+                <td class="score-max">15</td><td class="score-max">15</td><td>5</td><td>10</td><td>1</td>
+                <td class="total-col">70</td>
+              </tr>
+              <tr class="div-header"><td colspan="12">Division 3 — East</td></tr>
+              <tr>
+                <td class="team-col">Earth (Yak Attack)</td>
+                <td>11</td><td>8</td><td>9</td><td>12</td><td>12</td>
+                <td class="score-high">13</td><td>2</td><td>9</td><td class="score-high">14</td><td class="score-zero">0</td>
+                <td class="total-col">90</td>
+              </tr>
+              <tr>
+                <td class="team-col">Pengys</td>
+                <td>9</td><td>12</td><td>4</td><td>6</td><td class="score-high">13</td>
+                <td>3</td><td>9</td><td>7</td><td class="score-max">15</td><td>9</td>
+                <td class="total-col">87</td>
+              </tr>
+              <tr>
+                <td class="team-col">Sin</td>
+                <td>4</td><td class="score-high">13</td><td class="score-high">13</td><td>2</td><td>8</td>
+                <td>12</td><td>12</td><td>6</td><td>9</td><td>2</td>
+                <td class="total-col">81</td>
+              </tr>
+              <tr>
+                <td class="team-col">Cheapskates</td>
+                <td>2</td><td>11</td><td>6</td><td>1</td><td>3</td>
+                <td>1</td><td>5</td><td>12</td><td>12</td><td>8</td>
+                <td class="total-col">61</td>
+              </tr>
+              <tr class="div-header"><td colspan="12">Division 4 — West</td></tr>
+              <tr>
+                <td class="team-col">HemoGoblins</td>
+                <td>10</td><td>3</td><td class="score-high">14</td><td>8</td><td>11</td>
+                <td>8</td><td class="score-high">13</td><td class="score-high">13</td><td>5</td><td>7</td>
+                <td class="total-col">92</td>
+              </tr>
+              <tr>
+                <td class="team-col">Vanilla Thunder</td>
+                <td>8</td><td>4</td><td>11</td><td>4</td><td class="score-max">15</td>
+                <td>6</td><td>4</td><td>8</td><td>3</td><td>6</td>
+                <td class="total-col">69</td>
+              </tr>
+              <tr>
+                <td class="team-col">SSS</td>
+                <td>5</td><td>6</td><td class="score-zero">0</td><td>11</td><td class="score-zero">0</td>
+                <td>11</td><td>10</td><td class="score-zero">0</td><td class="score-zero">0</td><td>11</td>
+                <td class="total-col">54</td>
+              </tr>
+              <tr>
+                <td class="team-col">Yellow Fever</td>
+                <td>1</td><td>2</td><td>2</td><td>5</td><td>6</td>
+                <td class="score-high">14</td><td>3</td><td>1</td><td>1</td><td class="score-max">15</td>
+                <td class="total-col">50</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-family: var(--condensed); font-size: 12px; color: var(--ink-faint); margin-top: -20px; margin-bottom: 36px; letter-spacing: 0.05em;">Red cells = maximum or near-maximum divisional scores (13–15). Faded cells = zero points.</p>
+      </div>
+
+      <div class="article-section">
+        <div class="section-heading">Team Stories</div>
+        <h2 class="article-h2">The Narratives That Would Define the League</h2>
+
+        <h3 class="article-h3">The Orcas: Three Event Wins, 11th Place, and an Eternal Footnote</h3>
+        <p>The most confounding stat of the Baldwin Invitational: the Orcas won more events than any other team in the field. Three of them — Events 1, 6, and 7 — all at the maximum of 15 points. They also posted zeros in Events 2 and 4. The volatility was total, and it produced one of the most bizarre résumés in MML history: three event wins, 11th place, 70 total points. They were brilliant and absent in equal measure, and their final standing accurately captured neither quality.</p>
+
+        <h3 class="article-h3">SSS: Four Zeros in Ten Events</h3>
+        <p>SSS scored zero in Events 3, 5, 8, and 9 — four blanks in a single season, more than any other team in the field. Their total of 54 points earned them 15th. The "oldies" of the MML had an inauspicious debut that set a template: consistently present, rarely dangerous, occasionally adequate. Widely liked anyway.</p>
+
+        <h3 class="article-h3">Yellow Fever: Last Place and the Curse Takes Root</h3>
+        <p>Finishing last in the inaugural season wasn't supposed to be a prophecy. But Yellow Fever's final-event maximum of 15 points — scored when it couldn't improve their 16th-place finish — is the perfect emblem of this franchise: capable of brilliance at the worst possible moment. They finished last here. They would finish last or near-last in nearly every subsequent season. An all-time average of 15.83 across six seasons is the worst of any original team.</p>
+
+        <h3 class="article-h3">Deep Sky: The Drought Begins, Invisibly</h3>
+        <p>Jeff's favorite team finished 9th in the inaugural season, scoring a quiet 14 in the final event when the championship had already been decided elsewhere. Nobody suspected at the time that this middling debut was the first chapter of the MML's great unanswered question. Deep Sky would compile a 7.67 all-time average — among the best in league history — without ever winning a title. Season One was where that drought began, invisibly.</p>
+
+        <h3 class="article-h3">The Mowers: The First of Many Near-Misses</h3>
+        <p>Jeff's Mowers led this season for the majority of ten events. They posted the maximum 15 points in Event 8. They entered the final event with the overall lead. They scored 3 in Event 10 and lost by one point. It is the first entry in a long chronicle of Mowers near-misses — runner-up here, runner-up again in Season Three. A franchise whose history demands respect even when the results keep refusing to deliver it.</p>
+      </div>
+
+      <div class="legacy-box">
+        <div class="legacy-box-label">Historical Significance</div>
+        <h3>The Foundation of Everything</h3>
+        <p>The Baldwin Invitational established the rivalries, curses, and dynasties that would define the next five seasons. The HemoGoblins won by one point in the final event and a dynasty was born. The Mowers led for nine events and came up short. The Orcas won three events and finished 11th. Yellow Fever started last and stayed there. And somewhere in the accumulated points of ten events on a homemade track on Baldwin Avenue, the soul of the Moody Marble League was written down for the first time.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="standings-section">
+    <div class="container-wide">
+      <div class="standings-header">
+        <p class="standings-eyebrow">Baldwin Invitational · 2016</p>
+        <h2 class="standings-title">Final Standings</h2>
+      </div>
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th style="width:48px;">Pos.</th>
+            <th>Team</th>
+            <th class="right" style="width:80px;">Score</th>
+            <th class="right">Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="podium-1"><td class="place-num">🥇 1</td><td class="team-name">HemoGoblins</td><td class="right">92</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr class="podium-2"><td class="place-num">🥈 2</td><td class="team-name">Mowers</td><td class="right">91</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr class="podium-3"><td class="place-num">🥉 3</td><td class="team-name">Earth (Yak Attack)</td><td class="right">90</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">4</td><td>Broncos (Sorbetbes)</td><td class="right">87</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">5</td><td>Pengys</td><td class="right">87</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">6</td><td>Angels</td><td class="right">84</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">7</td><td>Sin</td><td class="right">81</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">8</td><td>Trinitarians</td><td class="right">73</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">9</td><td>Deep Sky</td><td class="right">73</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">10</td><td>Expressos</td><td class="right">71</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">11</td><td>Orcas</td><td class="right">70</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">12</td><td>Vanilla Thunder</td><td class="right">69</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">13</td><td>Purps</td><td class="right">67</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">14</td><td>Cheapskates</td><td class="right">61</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">15</td><td>SSS</td><td class="right">54</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">16</td><td>Yellow Fever</td><td class="right">50</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="article-body" style="padding-top: 52px; padding-bottom: 60px;">
+      <div class="article-section">
+        <div class="section-heading">Looking Back</div>
+        <h2 class="article-h2">Three Seasons on Baldwin Avenue</h2>
+        <p>The Baldwin Invitational did not feel, in the moment, like the founding document of a lasting institution. It felt like three college friends running marbles down homemade tracks in a house on Baldwin Avenue — which is exactly what it was. The ambition of building something lasting would come later, in the off-seasons, in the decision three years after the college era ended to reunite and keep it going.</p>
+        <p>But the bones were laid in Season One. The HemoGoblins won by one point in the final event, and the dynasty was born. Earth scored zero when they needed anything and finished third instead of first. The Mowers led for nine events and came up one point short. None of them could have known, as they packed up the tape measure tracks and put the marbles away, what they had actually built that night on Baldwin Avenue.</p>
+      </div>
+      <div class="rule-ornamental">
+        <span class="rule-ornamental-glyph">◆ Season Two: The Colorado Classic (2017) ◆</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="article-footer">
+  <div class="footer-league">Moody Marble League</div>
+  <div class="footer-sub">Est. Spokane, WA · Founded by Jeff, Joel &amp; Sam · Six Seasons · Three Champions</div>
+</footer>
+
+</body>
+</html>

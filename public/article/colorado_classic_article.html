@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Colorado Classic — MML Season Two</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1814; --ink-mid: #3d3a34; --ink-muted: #6b6760; --ink-faint: #9e9b96;
+    --paper: #faf8f4; --paper-warm: #f2ede3; --paper-rule: #e0d9ce;
+    --red: #c0392b; --navy: #1a2a4a; --gold: #b8860b; --gold-light: #f0d060;
+    --blue-accent: #1d5fa8; --green: #1e6b3a;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --display: 'Playfair Display', Georgia, serif;
+    --condensed: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+
+  .masthead { background: var(--navy); padding: 18px 0 14px; text-align: center; border-bottom: 4px solid var(--red); }
+  .masthead-league { font-family: var(--condensed); font-weight: 800; font-size: 13px; letter-spacing: 0.22em; color: #aab4c8; text-transform: uppercase; margin-bottom: 4px; }
+  .masthead-title { font-family: var(--condensed); font-weight: 800; font-size: 28px; letter-spacing: 0.06em; color: #fff; text-transform: uppercase; }
+  .masthead-title span { color: var(--gold-light); }
+
+  .hero { background: var(--navy); padding: 64px 20px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 24px, rgba(255,255,255,0.018) 24px, rgba(255,255,255,0.018) 25px); pointer-events: none; }
+  .hero-eyebrow { font-family: var(--condensed); font-weight: 700; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 18px; }
+  .hero-headline { font-family: var(--display); font-weight: 900; font-size: clamp(38px, 6vw, 72px); line-height: 1.08; color: #fff; max-width: 820px; margin: 0 auto 24px; }
+  .hero-deck { font-family: var(--serif); font-size: 19px; color: #c2c9d8; max-width: 640px; margin: 0 auto 36px; line-height: 1.55; font-weight: 300; font-style: italic; }
+  .hero-meta { display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .hero-meta-item { font-family: var(--condensed); font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8898b4; }
+  .hero-meta-sep { color: #3d5070; font-size: 10px; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  .container-wide { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  .rule-ornamental { display: flex; align-items: center; gap: 16px; margin: 48px 0 40px; }
+  .rule-ornamental::before, .rule-ornamental::after { content: ''; flex: 1; height: 1px; background: var(--paper-rule); }
+  .rule-ornamental-glyph { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); }
+
+  .article-body { padding: 52px 0 0; }
+  .article-body p { margin-bottom: 1.5em; font-size: 18px; color: var(--ink-mid); font-weight: 300; }
+  .article-body p.lead { font-size: 21px; line-height: 1.6; color: var(--ink); font-weight: 400; margin-bottom: 1.8em; }
+  .dropcap::first-letter { font-family: var(--display); font-weight: 900; font-size: 5.4em; line-height: 0.78; float: left; margin: 0.04em 0.09em 0 0; color: var(--red); }
+
+  .section-heading { font-family: var(--condensed); font-weight: 800; font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 12px; padding-top: 8px; }
+  h2.article-h2 { font-family: var(--display); font-weight: 700; font-size: 30px; line-height: 1.2; color: var(--ink); margin-bottom: 18px; }
+  h3.article-h3 { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.25; color: var(--ink); margin-bottom: 14px; }
+
+  .pullquote { border-left: 4px solid var(--red); margin: 40px 0; padding: 8px 0 8px 28px; }
+  .pullquote p { font-family: var(--display); font-style: italic; font-size: 24px !important; line-height: 1.4 !important; color: var(--ink) !important; font-weight: 400 !important; margin-bottom: 10px !important; }
+  .pullquote cite { font-family: var(--condensed); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); font-style: normal; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2px; margin: 40px 0; border: 1px solid var(--paper-rule); background: var(--paper-rule); }
+  .stat-cell { background: var(--paper); padding: 20px 18px; text-align: center; }
+  .stat-num { font-family: var(--condensed); font-weight: 800; font-size: 40px; line-height: 1; color: var(--red); display: block; margin-bottom: 6px; }
+  .stat-label { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); }
+
+  /* COMPARISON TABLE - S1 vs S2 */
+  .compare-table { width: 100%; border-collapse: collapse; font-family: var(--condensed); font-size: 14px; margin: 28px 0; }
+  .compare-table th { background: var(--navy); color: #8898b4; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 14px; text-align: left; }
+  .compare-table th.right { text-align: right; }
+  .compare-table td { padding: 10px 14px; border-bottom: 1px solid var(--paper-rule); color: var(--ink-mid); font-weight: 600; }
+  .compare-table td.right { text-align: right; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .up { color: var(--green); font-weight: 700; }
+  .compare-table .down { color: var(--red); font-weight: 700; }
+  .compare-table .same { color: var(--ink-muted); }
+  .compare-table tr.highlight td { background: var(--paper-warm); }
+
+  .event-tracker { margin: 36px 0; overflow-x: auto; }
+  .event-tracker table { width: 100%; border-collapse: collapse; font-family: var(--condensed); font-size: 13px; min-width: 680px; }
+  .event-tracker th { background: var(--navy); color: #8898b4; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,0.07); }
+  .event-tracker th.team-col { text-align: left; padding-left: 14px; min-width: 155px; }
+  .event-tracker td { padding: 9px 8px; text-align: center; border-bottom: 1px solid var(--paper-rule); border-right: 1px solid var(--paper-rule); color: var(--ink-mid); font-weight: 600; }
+  .event-tracker td.team-col { text-align: left; padding-left: 14px; font-weight: 700; color: var(--ink); font-size: 14px; }
+  .event-tracker td.total-col { font-weight: 800; color: var(--ink); background: var(--paper-warm); }
+  .event-tracker tr:last-child td { border-bottom: none; }
+  .event-tracker .div-header td { background: var(--paper-warm); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); padding: 8px 14px; border-bottom: 2px solid var(--paper-rule); }
+  .score-high { background: rgba(192,57,43,0.10); color: #922b21 !important; font-weight: 800 !important; }
+  .score-zero { color: #c8c4be !important; font-weight: 400 !important; }
+  .score-max { background: rgba(192,57,43,0.20); color: #922b21 !important; font-weight: 800 !important; }
+
+  .momentum-grid { margin: 36px 0; }
+  .momentum-row { display: flex; align-items: baseline; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--paper-rule); font-family: var(--condensed); }
+  .momentum-row:last-child { border-bottom: none; }
+  .momentum-event { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); min-width: 78px; }
+  .momentum-leader { font-size: 16px; font-weight: 700; color: var(--ink); min-width: 230px; }
+  .momentum-leader span { color: var(--red); }
+  .momentum-note { font-size: 13px; color: var(--ink-muted); flex: 1; line-height: 1.4; }
+
+  .standings-section { background: var(--navy); padding: 52px 0 60px; margin: 60px 0 0; }
+  .standings-header { text-align: center; margin-bottom: 36px; }
+  .standings-eyebrow { font-family: var(--condensed); font-weight: 700; font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+  .standings-title { font-family: var(--display); font-weight: 900; font-size: 36px; color: #fff; }
+  .standings-table { width: 100%; border-collapse: collapse; font-family: var(--condensed); }
+  .standings-table thead tr { border-bottom: 2px solid rgba(255,255,255,0.15); }
+  .standings-table th { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #7a8ba8; padding: 10px 14px; text-align: left; }
+  .standings-table th.right { text-align: right; }
+  .standings-table td { padding: 12px 14px; font-size: 16px; font-weight: 600; color: #c8d0de; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .standings-table td.right { text-align: right; color: #8898b4; }
+  .standings-table tr.podium-1 td { color: #fff; }
+  .standings-table tr.podium-1 td.team-name { color: var(--gold-light); font-size: 17px; }
+  .standings-table tr.podium-2 td.team-name { color: #cdd5e0; }
+  .standings-table tr.podium-3 td.team-name { color: #b4a87c; }
+  .place-num { font-size: 15px; color: #4a5870; font-weight: 600; }
+  .standings-table tr.podium-1 .place-num { color: var(--gold-light); font-size: 17px; }
+  .standings-table tr.podium-2 .place-num { color: #aab4c8; }
+  .standings-table tr.podium-3 .place-num { color: #b4a87c; }
+  .owner-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-left: 8px; vertical-align: middle; }
+  .owner-sam { background: rgba(200,80,80,0.25); color: #e8a8a8; }
+  .owner-jeff { background: rgba(80,140,200,0.25); color: #a8c8e8; }
+  .owner-joel { background: rgba(80,190,140,0.25); color: #a8e8cc; }
+
+  .division-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 36px 0; }
+  .division-card { border: 1px solid var(--paper-rule); background: #fff; padding: 20px; }
+  .division-card-head { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--paper-rule); }
+  .division-card-head.north { border-color: var(--blue-accent); }
+  .division-card-head.south { border-color: var(--red); }
+  .division-card-head.east { border-color: #2e7d52; }
+  .division-card-head.west { border-color: var(--gold); }
+  .division-team { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-family: var(--condensed); font-size: 15px; font-weight: 600; color: var(--ink); border-bottom: 1px solid #f0ece4; }
+  .division-team:last-child { border-bottom: none; }
+  .division-score { font-size: 14px; color: var(--ink-muted); font-weight: 400; }
+  .div-rank { font-size: 12px; color: var(--ink-faint); margin-right: 8px; }
+
+  .article-section { margin-bottom: 52px; }
+
+  .legacy-box { background: var(--paper-warm); border-left: 4px solid var(--gold); padding: 28px 32px; margin: 44px 0; }
+  .legacy-box-label { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .legacy-box h3 { font-family: var(--display); font-weight: 700; font-size: 20px; color: var(--ink); margin-bottom: 12px; }
+  .legacy-box p { font-size: 16px !important; color: var(--ink-mid) !important; font-weight: 300 !important; margin-bottom: 0 !important; }
+
+  .callout-box { border: 1px solid var(--paper-rule); border-top: 3px solid var(--red); padding: 24px 28px; margin: 36px 0; background: #fff; }
+  .callout-box-label { font-family: var(--condensed); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+  .callout-box p { font-size: 16px !important; color: var(--ink-mid) !important; font-weight: 300 !important; margin-bottom: 8px !important; }
+  .callout-box p:last-child { margin-bottom: 0 !important; }
+
+  .article-footer { background: var(--ink); padding: 40px 24px; text-align: center; }
+  .footer-league { font-family: var(--condensed); font-weight: 800; font-size: 20px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+  .footer-sub { font-family: var(--condensed); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #5a6880; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 44px 16px 40px; }
+    .hero-headline { font-size: 34px; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .division-grid { grid-template-columns: 1fr 1fr; }
+    .momentum-leader { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-league">Moody Marble League · Official Record</div>
+  <div class="masthead-title">MML <span>Season Two</span></div>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">Season Two · Spokane, Washington · 2017</p>
+  <h1 class="hero-headline">The Colorado Classic</h1>
+  <p class="hero-deck">If Season One established that the HemoGoblins were dangerous, Season Two confirmed something far more unsettling: they were dominant. The second championship in MML history was never really in doubt — except by everyone who had to watch it happen.</p>
+  <div class="hero-meta">
+    <span class="hero-meta-item">16 Teams</span>
+    <span class="hero-meta-sep">◆</span>
+    <span class="hero-meta-item">4 Divisions</span>
+    <span class="hero-meta-sep">◆</span>
+    <span class="hero-meta-item">10 Events</span>
+    <span class="hero-meta-sep">◆</span>
+    <span class="hero-meta-item">Baldwin Ave · Spokane, WA</span>
+  </div>
+</section>
+
+<main>
+  <div class="container">
+    <div class="article-body">
+
+      <!-- OPENING -->
+      <div class="article-section">
+        <p class="lead dropcap">They returned to Baldwin Avenue in 2017 with the same house, the same handmade tracks, and the same sixteen teams — but a very different feeling in the room. The HemoGoblins were defending champions. They had won Season One by a single point, in the final event, in the most dramatic fashion imaginable. Nobody had beaten them. Nobody had come close to figuring them out. And now, with the Colorado Classic underway, Sam's team set about making sure that the closest anyone would get to them was a distant second place.</p>
+
+        <p>The Colorado Classic — named for Jeff's home state, hosted at the same Baldwin Ave house that had witnessed the MML's founding — was Season Two of the Moody Marble League. Same format as the Baldwin Invitational: sixteen teams, four divisions, ten events, points distributed within each division, highest cumulative total wins. The rules hadn't changed. The landscape had.</p>
+
+        <p>The HemoGoblins would win seven of ten events on their way to a 124-point total — the highest winning score in the Baldwin Ave era. They would lead the season from Event 3 onward, never once relinquishing that position, and finish nine points clear of the Angels in second. It was not close. It was not supposed to be close. The dynasty, it turned out, had only just begun.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell"><span class="stat-num">124</span><span class="stat-label">Winning Score</span></div>
+        <div class="stat-cell"><span class="stat-num">9 pts</span><span class="stat-label">Margin of Victory</span></div>
+        <div class="stat-cell"><span class="stat-num">7</span><span class="stat-label">HemoGoblins Event Wins</span></div>
+        <div class="stat-cell"><span class="stat-num">2</span><span class="stat-label">Consecutive Titles</span></div>
+      </div>
+
+      <!-- THE DRAW -->
+      <div class="article-section">
+        <div class="section-heading">The Draw</div>
+        <h2 class="article-h2">Same Sixteen, New Divisions</h2>
+
+        <p>The sixteen teams from the Baldwin Invitational returned intact, re-sorted into new divisional groupings. Division North now held the Angels, Purps, Expressos, and the Mowers — last season's runner-up paired against three teams they had outperformed in Season One. Division South drew Deep Sky, Trinitarians, Broncos (Sorbetbes), and Orcas. Division East featured Earth, Pengys, Sin, and Cheapskates. Division West, again, held the HemoGoblins, this time alongside SSS, Vanilla Thunder, and Yellow Fever.</p>
+
+        <p>The West Division was, once again, the weakest on paper. SSS had finished 15th in Season One. Vanilla Thunder had finished 12th. Yellow Fever had finished last. The HemoGoblins were being handed, for the second consecutive season, the most favorable division in the draw. They would not waste it.</p>
+      </div>
+
+      <div class="division-grid">
+        <div class="division-card">
+          <div class="division-card-head north">Division 1 — North</div>
+          <div class="division-team"><span><span class="div-rank">1</span>Angels</span><span class="division-score">115 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Purps</span><span class="division-score">92 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Expressos</span><span class="division-score">67 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Mowers</span><span class="division-score">44 pts</span></div>
+        </div>
+        <div class="division-card">
+          <div class="division-card-head south">Division 2 — South</div>
+          <div class="division-team"><span><span class="div-rank">1</span>Deep Sky</span><span class="division-score">75 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Trinitarians</span><span class="division-score">68 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Broncos</span><span class="division-score">65 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Orcas</span><span class="division-score">59 pts</span></div>
+        </div>
+        <div class="division-card">
+          <div class="division-card-head east">Division 3 — East</div>
+          <div class="division-team"><span><span class="div-rank">1</span>Earth</span><span class="division-score">99 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>Pengys</span><span class="division-score">90 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Sin</span><span class="division-score">67 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Cheapskates</span><span class="division-score">36 pts</span></div>
+        </div>
+        <div class="division-card">
+          <div class="division-card-head west">Division 4 — West</div>
+          <div class="division-team"><span><span class="div-rank">1</span>HemoGoblins</span><span class="division-score">124 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">2</span>SSS</span><span class="division-score">78 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">3</span>Vanilla Thunder</span><span class="division-score">69 pts</span></div>
+          <div class="division-team"><span><span class="div-rank">4</span>Yellow Fever</span><span class="division-score">52 pts</span></div>
+        </div>
+      </div>
+
+      <!-- EARLY SEASON -->
+      <div class="article-section">
+        <div class="section-heading">Events 1–3</div>
+        <h2 class="article-h2">Earth Opens Strong. The HemoGoblins Take Notice.</h2>
+
+        <p>Event 1 of the Colorado Classic belonged to Earth — Sam's other team, making the case in Division East that the HemoGoblins didn't have a monopoly on Sam's roster. Earth scored the maximum 15 points to open the season, with the Orcas close behind at 14 and the HemoGoblins at 13 in the West. After one event, Earth led the overall standings. The HemoGoblins were second.</p>
+
+        <p>Event 2 was Deep Sky's finest moment of the season — their only event win, a maximum 15 points, with the Broncos at 14 and the HemoGoblins again at 13. Jeff's Deep Sky had announced themselves as a team to watch in the South. The Mowers, meanwhile, scored zero in Event 2 — their first blank of the season, and a sign of things to come.</p>
+
+        <p>Event 3 was the pivot point. The Angels scored the maximum 15 points in the North — their first event win of the season. The HemoGoblins posted 14 in the West. And when the cumulative totals were tallied after three events, the HemoGoblins — with 40 points — had moved to the top of the overall standings for the first time. They would not leave that position for the remainder of the season.</p>
+      </div>
+
+      <!-- THE HEMOGOBLINS RUN -->
+      <div class="article-section">
+        <div class="section-heading">Events 3–10</div>
+        <h2 class="article-h2">The Most Dominant Run in Baldwin Ave History</h2>
+
+        <p>What the HemoGoblins did from Event 3 through the end of the Colorado Classic was not merely winning — it was the systematic construction of an insurmountable lead. They never dropped below 10 points in any single event from Event 1 through Event 9. Their floor was as high as most teams' ceiling. And twice — in Events 7 and 9 — they reached the maximum 15 points.</p>
+
+        <p>Event 4 was steady: 10 points, HemoGoblins still leading at 50. Event 5 came 13 more, extending to 63 while Earth sat at 58 and the Angels at 55 — still in range, still hoping. Event 6 brought 14 more points for Sam's team, and their lead over Earth had grown to seven. It was Event 7 that buried any realistic challenge: the HemoGoblins posted the maximum 15 points — their first event win of the season — moving to 92 cumulative points while Earth trailed at 84 and the Angels at 72. A 20-point gap between first and third with three events remaining.</p>
+
+        <div class="pullquote">
+          <p>"They never dropped below 10 points in any single event from Event 1 through Event 9. Their floor was as high as most teams' ceiling."</p>
+          <cite>Colorado Classic · HemoGoblins Season Analysis</cite>
+        </div>
+
+        <p>Events 8 and 9 sealed it completely. Event 8: 12 more points, HemoGoblins at 104. Event 9: another maximum 15 — their second event win — pushing the total to 119. The Angels had finished second in Event 9 with 14 points, their own total now at 100. The gap was 19 points with one event remaining. No team in the field could close that in a single event.</p>
+
+        <p>Event 10 was a formality. The HemoGoblins scored 5, their lowest mark of the season and the only event in which they dipped below double digits. It didn't matter. They finished at 124 points — nine clear of the Angels at 115. The Colorado Classic had its champion before the final marble rolled.</p>
+
+        <div class="callout-box">
+          <div class="callout-box-label">The HemoGoblins Season by the Numbers</div>
+          <p>Seven events with a score of 12 or higher. Two event wins (Events 7 and 9) at the maximum 15 points. Never below 10 points from Events 1 through 9. Led the overall standings from Event 3 through the final tally. Won by nine points — the largest margin of victory in the Baldwin Ave era.</p>
+          <p>Their West Division total of 124 was also the highest single-division score of the Colorado Classic, 46 points clear of the division's second-place SSS at 78. They didn't just win the season — they dominated the only group they were accountable to, then dominated the full field on top of it.</p>
+        </div>
+      </div>
+
+      <!-- THE ANGELS -->
+      <div class="article-section">
+        <div class="section-heading">The Runner-Up</div>
+        <h2 class="article-h2">The Angels Make Their Statement</h2>
+
+        <p>If the Colorado Classic had a silver lining for anyone not named Sam, it was the Angels. Joel's team finished second with 115 points — a strong, competitive season that represented a significant improvement from their 6th-place finish in Season One. They won three events: the maximum 15 points in Events 3, 5, and 10. They posted 14 points in both Events 8 and 9. Their only significant stumble was Event 4, where they scored just 2 points — a divisional last that briefly threatened to drag them out of contention.</p>
+
+        <p>The Angels' 115-point total would have won the Baldwin Invitational outright. In the Colorado Classic, it was good for second. That is the measure of how far the HemoGoblins had elevated the competition.</p>
+
+        <p>For Joel, the Angels' runner-up finish planted a seed. His team had shown they could put together a dominant individual season. What they couldn't do — yet — was match Sam's team when both were performing at their peaks. That gap would close over the following seasons, but in the Colorado Classic, it was nine points wide and unmistakable.</p>
+      </div>
+
+      <!-- THE MOWERS COLLAPSE -->
+      <div class="article-section">
+        <div class="section-heading">The Collapse</div>
+        <h2 class="article-h2">The Mowers: From Second to Fifteenth</h2>
+
+        <p>No story from the Colorado Classic is more striking than what happened to the Mowers. In Season One, they had finished second with 91 points, leading the season for the majority of ten events, losing the championship by a single point in the final event. It was a heartbreaking near-miss that positioned them as a genuine title threat going into Season Two.</p>
+
+        <p>In the Colorado Classic, the Mowers finished 15th with 44 points. The fall was 47 points — nearly half their previous total — and 13 places in the standings.</p>
+
+        <p>The numbers tell a grim story: zeros in Events 2 and 9, their two worst results bookending a season of consistent mediocrity. Their highest single-event score was 9 points, achieved in Events 7 and 8. They never threatened the top of the North Division, finishing last in their group behind even a resurgent Purps. The runner-up from Season One had become the second-worst team in the field.</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th class="right">S1 Finish</th>
+              <th class="right">S1 Score</th>
+              <th class="right">S2 Finish</th>
+              <th class="right">S2 Score</th>
+              <th class="right">Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td>HemoGoblins</td>
+              <td class="right">1st</td>
+              <td class="right">92</td>
+              <td class="right">1st</td>
+              <td class="right">124</td>
+              <td class="right up">▲ +32 pts</td>
+            </tr>
+            <tr>
+              <td>Angels</td>
+              <td class="right">6th</td>
+              <td class="right">84</td>
+              <td class="right">2nd</td>
+              <td class="right">115</td>
+              <td class="right up">▲ +31 pts</td>
+            </tr>
+            <tr>
+              <td>Earth (Yak Attack)</td>
+              <td class="right">3rd</td>
+              <td class="right">90</td>
+              <td class="right">3rd</td>
+              <td class="right">99</td>
+              <td class="right up">▲ +9 pts</td>
+            </tr>
+            <tr>
+              <td>Purps</td>
+              <td class="right">13th</td>
+              <td class="right">67</td>
+              <td class="right">4th</td>
+              <td class="right">92</td>
+              <td class="right up">▲ +25 pts</td>
+            </tr>
+            <tr>
+              <td>Pengys</td>
+              <td class="right">5th</td>
+              <td class="right">87</td>
+              <td class="right">5th</td>
+              <td class="right">90</td>
+              <td class="right same">— +3 pts</td>
+            </tr>
+            <tr class="highlight">
+              <td>The Mowers</td>
+              <td class="right">2nd</td>
+              <td class="right">91</td>
+              <td class="right">15th</td>
+              <td class="right">44</td>
+              <td class="right down">▼ −47 pts</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The Mowers would bounce back in Season Three — finishing second again, once more in heartbreaking fashion. But the Colorado Classic established a pattern of volatility that would follow the franchise throughout its history: capable of brilliance, vulnerable to collapse, always somewhere between the podium and the basement.</p>
+      </div>
+
+      <!-- OTHER STORIES -->
+      <div class="article-section">
+        <div class="section-heading">Around the Field</div>
+        <h2 class="article-h2">Purps Surge, SSS Surprise, and a South Division Sleeper</h2>
+
+        <h3 class="article-h3">Purps: Best Season, Best Finish</h3>
+        <p>The most pleasant surprise of the Colorado Classic came from Purps. In Season One they had finished 13th with 67 points — a forgettable debut. In Season Two they surged to fourth place with 92 points, earning scores of 14, 12, 12, 13, and 13 across five different events in the second half of the season. It remains the best single-season finish in Purps history. The franchise would spend the next four seasons drifting back toward the bottom, but for one year on Baldwin Avenue, they looked like a legitimate upper-tier team.</p>
+
+        <h3 class="article-h3">Earth: The Quietly Consistent Podium</h3>
+        <p>Sam's Earth finished third in Season One. Sam's Earth — now going by Yak Attack — finished third in Season Two. Their 99-point total in the Colorado Classic was their best score of the Baldwin Ave era, and they won the opening event outright with a maximum 15. The back-to-back third-place finishes established them as the most consistently reliable team Sam owned outside the HemoGoblins. They would eventually fall off this pace, but their early consistency was real.</p>
+
+        <h3 class="article-h3">SSS: An Unlikely Event Win</h3>
+        <p>SSS — the team that had posted four zeros in Season One on their way to 15th place — turned in the surprise individual result of the Colorado Classic: a maximum 15 points in Event 6, the only event win of their existence to that point. The "oldies" couldn't sustain it across the full ten events, finishing 6th overall with 78 points, but the Event 6 performance was a genuine moment. It remains their highest single-event score ever recorded.</p>
+
+        <h3 class="article-h3">Deep Sky: An Event Win, Still No Title Path</h3>
+        <p>Jeff's Deep Sky opened Event 2 with the maximum 15 points — their only event win of the season — and finished 7th overall with 75 points. Respectable. Not the breakthrough Jeff was looking for. Deep Sky had now finished 9th and 7th in their first two seasons, consistently mid-table despite being capable of event-level excellence. The shape of their long-term narrative — enough talent to be frustrating, not enough consistency to win — was beginning to take form.</p>
+
+        <h3 class="article-h3">Cheapskates: The Floor of the Field</h3>
+        <p>The Cheapskates finished last with 36 points — the lowest total in the Colorado Classic field — posting zeros in Events 1 and 7. Their Division East group was competitive, with Earth and Pengys both scoring 90+ points, but the Cheapskates were never a factor. Their 16th-place finish here, combined with their 14th in Season One, established them as one of the weaker original teams. They would eventually find their best season in the Michigan Games — but that was still a year away.</p>
+      </div>
+
+      <!-- MOMENTUM CHART -->
+      <div class="article-section">
+        <div class="section-heading">Race to the Title</div>
+        <h2 class="article-h2">How the Season Unfolded — Event by Event</h2>
+        <div class="momentum-grid">
+          <div class="momentum-row">
+            <span class="momentum-event">After E1</span>
+            <span class="momentum-leader">Leader: <span>Earth (15)</span></span>
+            <span class="momentum-note">HemoGoblins at 13. Angels at 12. Mowers score 6, Cheapskates score 0.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E2</span>
+            <span class="momentum-leader">Leader: <span>Earth (27)</span></span>
+            <span class="momentum-note">Deep Sky wins E2 with max-15. HemoGoblins at 26. Mowers post their first zero.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E3</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (40)</span></span>
+            <span class="momentum-note">Angels win E3 max-15. HemoGoblins take the overall lead. They will not give it back.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E4</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (50)</span></span>
+            <span class="momentum-note">Earth at 44, Angels at 40. HemoGoblins up 6. Broncos post their first zero.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E5</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (63)</span></span>
+            <span class="momentum-note">Angels win E5 max-15. Earth at 58, Angels at 55. HemoGoblins lead by 5.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E6</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (77)</span></span>
+            <span class="momentum-note">SSS wins E6 max-15 — their only event win ever. HemoGoblins score 14, extend lead to 7 over Earth.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E7</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (92)</span></span>
+            <span class="momentum-note">HemoGoblins win E7 max-15. Earth at 84, Angels at 72. Lead over 3rd is now 20 points.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E8</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (104)</span></span>
+            <span class="momentum-note">Expressos win E8 max-15. HemoGoblins score 12, reach 104. Earth at 88, Angels at 86.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">After E9</span>
+            <span class="momentum-leader">Leader: <span>HemoGoblins (119)</span></span>
+            <span class="momentum-note">HemoGoblins win E9 max-15. Angels at 100. Gap of 19 with one event left — title clinched.</span>
+          </div>
+          <div class="momentum-row">
+            <span class="momentum-event">Final (E10)</span>
+            <span class="momentum-leader">Champion: <span>HemoGoblins (124)</span></span>
+            <span class="momentum-note">Angels win E10 max-15. HemoGoblins score 5. Final margin: 9 points. Back-to-back titles.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL SCORE TABLE -->
+      <div class="article-section">
+        <div class="section-heading">Complete Scoring Record</div>
+        <h2 class="article-h2">All Ten Events, All Sixteen Teams</h2>
+        <div class="event-tracker">
+          <table>
+            <thead>
+              <tr>
+                <th class="team-col">Team</th>
+                <th>E1</th><th>E2</th><th>E3</th><th>E4</th><th>E5</th>
+                <th>E6</th><th>E7</th><th>E8</th><th>E9</th><th>E10</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="div-header"><td colspan="12">Division 1 — North</td></tr>
+              <tr>
+                <td class="team-col">Angels</td>
+                <td>12</td><td>11</td><td class="score-max">15</td><td>2</td><td class="score-max">15</td>
+                <td>10</td><td>7</td><td class="score-high">14</td><td class="score-high">14</td><td class="score-max">15</td>
+                <td class="total-col">115</td>
+              </tr>
+              <tr>
+                <td class="team-col">Purps</td>
+                <td>11</td><td>3</td><td>1</td><td class="score-high">14</td><td>12</td>
+                <td>8</td><td>12</td><td class="score-high">13</td><td>5</td><td class="score-high">13</td>
+                <td class="total-col">92</td>
+              </tr>
+              <tr>
+                <td class="team-col">Expressos</td>
+                <td>7</td><td>9</td><td>3</td><td>11</td><td>6</td>
+                <td>4</td><td>3</td><td class="score-max">15</td><td>9</td><td class="score-zero">0</td>
+                <td class="total-col">67</td>
+              </tr>
+              <tr>
+                <td class="team-col">The Mowers</td>
+                <td>6</td><td class="score-zero">0</td><td>5</td><td>4</td><td>5</td>
+                <td>2</td><td>9</td><td>9</td><td class="score-zero">0</td><td>4</td>
+                <td class="total-col">44</td>
+              </tr>
+              <tr class="div-header"><td colspan="12">Division 2 — South</td></tr>
+              <tr>
+                <td class="team-col">Deep Sky</td>
+                <td>8</td><td class="score-max">15</td><td>7</td><td>5</td><td>9</td>
+                <td>6</td><td>1</td><td>7</td><td>11</td><td>6</td>
+                <td class="total-col">75</td>
+              </tr>
+              <tr>
+                <td class="team-col">Trinitarians</td>
+                <td>1</td><td>6</td><td>6</td><td>3</td><td>8</td>
+                <td>9</td><td>11</td><td>10</td><td class="score-high">13</td><td>1</td>
+                <td class="total-col">68</td>
+              </tr>
+              <tr>
+                <td class="team-col">Broncos (Sorbetbes)</td>
+                <td>3</td><td class="score-high">14</td><td>12</td><td>9</td><td class="score-zero">0</td>
+                <td>5</td><td class="score-high">13</td><td class="score-zero">0</td><td>2</td><td>7</td>
+                <td class="total-col">65</td>
+              </tr>
+              <tr>
+                <td class="team-col">Orcas</td>
+                <td class="score-high">14</td><td>5</td><td class="score-zero">0</td><td class="score-zero">0</td><td>3</td>
+                <td>1</td><td>10</td><td>6</td><td>6</td><td class="score-high">14</td>
+                <td class="total-col">59</td>
+              </tr>
+              <tr class="div-header"><td colspan="12">Division 3 — East</td></tr>
+              <tr>
+                <td class="team-col">Earth (Yak Attack)</td>
+                <td class="score-max">15</td><td>12</td><td>2</td><td class="score-max">15</td><td class="score-high">14</td>
+                <td>12</td><td class="score-high">14</td><td>4</td><td>3</td><td>8</td>
+                <td class="total-col">99</td>
+              </tr>
+              <tr>
+                <td class="team-col">Pengys</td>
+                <td>10</td><td>4</td><td class="score-high">13</td><td class="score-high">13</td><td>7</td>
+                <td class="score-high">13</td><td>5</td><td>5</td><td>10</td><td>10</td>
+                <td class="total-col">90</td>
+              </tr>
+              <tr>
+                <td class="team-col">Sin</td>
+                <td>4</td><td>10</td><td>4</td><td>12</td><td>11</td>
+                <td>3</td><td>6</td><td>1</td><td>4</td><td>12</td>
+                <td class="total-col">67</td>
+              </tr>
+              <tr>
+                <td class="team-col">Cheapskates</td>
+                <td class="score-zero">0</td><td>2</td><td>8</td><td>1</td><td>1</td>
+                <td>7</td><td class="score-zero">0</td><td>3</td><td>12</td><td>2</td>
+                <td class="total-col">36</td>
+              </tr>
+              <tr class="div-header"><td colspan="12">Division 4 — West</td></tr>
+              <tr>
+                <td class="team-col">HemoGoblins</td>
+                <td class="score-high">13</td><td class="score-high">13</td><td class="score-high">14</td><td>10</td><td class="score-high">13</td>
+                <td class="score-high">14</td><td class="score-max">15</td><td>12</td><td class="score-max">15</td><td>5</td>
+                <td class="total-col">124</td>
+              </tr>
+              <tr>
+                <td class="team-col">SSS</td>
+                <td>5</td><td>8</td><td>11</td><td>6</td><td>2</td>
+                <td class="score-max">15</td><td>4</td><td>11</td><td>7</td><td>9</td>
+                <td class="total-col">78</td>
+              </tr>
+              <tr>
+                <td class="team-col">Vanilla Thunder</td>
+                <td>2</td><td>1</td><td>9</td><td>7</td><td>10</td>
+                <td>11</td><td>8</td><td>2</td><td>8</td><td>11</td>
+                <td class="total-col">69</td>
+              </tr>
+              <tr>
+                <td class="team-col">Yellow Fever</td>
+                <td>9</td><td>7</td><td>10</td><td>8</td><td>4</td>
+                <td class="score-zero">0</td><td>2</td><td>8</td><td>1</td><td>3</td>
+                <td class="total-col">52</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-family: var(--condensed); font-size: 12px; color: var(--ink-faint); margin-top: -20px; margin-bottom: 36px; letter-spacing: 0.05em;">Red cells = maximum or near-maximum divisional scores (13–15). Faded cells = zero points.</p>
+      </div>
+
+      <div class="legacy-box">
+        <div class="legacy-box-label">Historical Significance</div>
+        <h3>A Dynasty Declares Itself</h3>
+        <p>The Colorado Classic was the season the HemoGoblins stopped being the defending champions and started being the dynasty. Back-to-back titles. The highest winning score in the Baldwin Ave era. Seven events at 12 points or above. An Angels runner-up season that would have won any previous tournament — and still finished nine points back. Sam's team made it look routine. That was the most alarming part. The league had a dynasty on its hands, and everyone in it knew it.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FINAL STANDINGS -->
+  <section class="standings-section">
+    <div class="container-wide">
+      <div class="standings-header">
+        <p class="standings-eyebrow">Colorado Classic · 2017</p>
+        <h2 class="standings-title">Final Standings</h2>
+      </div>
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th style="width:48px;">Pos.</th>
+            <th>Team</th>
+            <th class="right" style="width:80px;">Score</th>
+            <th class="right">Owner</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="podium-1"><td class="place-num">🥇 1</td><td class="team-name">HemoGoblins</td><td class="right">124</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr class="podium-2"><td class="place-num">🥈 2</td><td class="team-name">Angels</td><td class="right">115</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr class="podium-3"><td class="place-num">🥉 3</td><td class="team-name">Earth (Yak Attack)</td><td class="right">99</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">4</td><td>Purps</td><td class="right">92</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">5</td><td>Pengys</td><td class="right">90</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">6</td><td>SSS</td><td class="right">78</td><td class="right"><span class="owner-badge owner-sam">Sam</span></td></tr>
+          <tr><td class="place-num">7</td><td>Deep Sky</td><td class="right">75</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">8</td><td>Vanilla Thunder</td><td class="right">69</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">9</td><td>Trinitarians</td><td class="right">68</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">10</td><td>Expressos</td><td class="right">67</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">11</td><td>Sin</td><td class="right">67</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">12</td><td>Broncos (Sorbetbes)</td><td class="right">65</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">13</td><td>Orcas</td><td class="right">59</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+          <tr><td class="place-num">14</td><td>Yellow Fever</td><td class="right">52</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">15</td><td>The Mowers</td><td class="right">44</td><td class="right"><span class="owner-badge owner-jeff">Jeff</span></td></tr>
+          <tr><td class="place-num">16</td><td>Cheapskates</td><td class="right">36</td><td class="right"><span class="owner-badge owner-joel">Joel</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="article-body" style="padding-top: 52px; padding-bottom: 60px;">
+      <div class="article-section">
+        <div class="section-heading">Looking Ahead</div>
+        <h2 class="article-h2">The Final Season on Baldwin Avenue</h2>
+        <p>Two championships. Two different stories. Season One was a last-event thriller decided by one point. Season Two was a wire-to-wire demonstration of sustained excellence. The HemoGoblins had proven they could win under pressure and win without it. They were, by every measure, the MML's defining franchise after just two seasons.</p>
+        <p>The Michigan Games — Season Three, and the final tournament of the Baldwin Ave era — would finally end that run. A different champion would emerge from a completely different kind of competition. But that was still a year away. In 2017, on Baldwin Avenue, in the house where all of this began, the HemoGoblins were back-to-back champions. And nobody in the league had the faintest idea how to stop them.</p>
+      </div>
+      <div class="rule-ornamental">
+        <span class="rule-ornamental-glyph">◆ Season Three: The Michigan Games (2018) ◆</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="article-footer">
+  <div class="footer-league">Moody Marble League</div>
+  <div class="footer-sub">Est. Spokane, WA · Founded by Jeff, Joel &amp; Sam · Six Seasons · Three Champions</div>
+</footer>
+
+</body>
+</html>

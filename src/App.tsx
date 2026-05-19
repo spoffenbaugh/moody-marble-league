@@ -142,16 +142,16 @@ const articles: Article[] = [
 
 // ─── STANDINGS — updated with corrected averages ───────────────────────────────
 const standings: Standing[] = [
-  { team: 'HemoGoblins', logo: '/images/teams/hemo-goblins.png', tournaments: 6, aggregate: 31,  average: '5.17' },
-  { team: 'Tankers',     logo: '/images/teams/tankers.png',      tournaments: 1, aggregate: 6,   average: '6.00' },
-  { team: 'Expressos',   logo: '/images/teams/expressos.png',    tournaments: 6, aggregate: 40,  average: '6.67' },
-  { team: 'Sin',         logo: '/images/teams/sin.png',          tournaments: 6, aggregate: 44,  average: '7.33' },
-  { team: 'Trinitarians',logo: '/images/teams/trinitarians.png', tournaments: 6, aggregate: 45,  average: '7.50' },
-  { team: 'Pengys',      logo: '/images/teams/pengys.png',       tournaments: 6, aggregate: 46,  average: '7.67' },
-  { team: 'Deep Sky',    logo: '/images/teams/deep-sky.png',     tournaments: 6, aggregate: 47,  average: '7.83' },
-  { team: 'Sauce Boss',  logo: '/images/teams/sauce-boss.png',   tournaments: 1, aggregate: 8,   average: '8.00' },
-  { team: 'Accio',       logo: '/images/teams/accio.png',        tournaments: 1, aggregate: 9,   average: '9.00' },
-  { team: 'Double Truffle',logo:'/images/teams/double-truffle.png',tournaments:3,aggregate: 28,  average: '9.33' },
+  { team: 'HemoGoblins',  logo: '/images/teams/hemo-goblins.png',  tournaments: 6, aggregate: 30, average: '5.00' },
+  { team: 'Tankers',      logo: '/images/teams/tankers.png',        tournaments: 1, aggregate: 6,  average: '6.00' },
+  { team: 'Expressos',    logo: '/images/teams/expressos.png',      tournaments: 6, aggregate: 40, average: '6.67' },
+  { team: 'Sin',          logo: '/images/teams/sin.png',            tournaments: 6, aggregate: 43, average: '7.17' },
+  { team: 'Deep Sky',     logo: '/images/teams/deep-sky.png',       tournaments: 6, aggregate: 46, average: '7.67' },
+  { team: 'Pengys',       logo: '/images/teams/pengys.png',         tournaments: 6, aggregate: 46, average: '7.67' },
+  { team: 'Trinitarians', logo: '/images/teams/trinitarians.png',   tournaments: 6, average: '7.67', aggregate: 46 },
+  { team: 'Sauce Boss',   logo: '/images/teams/sauce-boss.png',     tournaments: 1, aggregate: 8,  average: '8.00' },
+  { team: 'Accio',        logo: '/images/teams/accio.png',          tournaments: 1, aggregate: 9,  average: '9.00' },
+  { team: 'Double Truffle',logo:'/images/teams/double-truffle.png', tournaments: 3, aggregate: 28, average: '9.33' },
 ]
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────────
@@ -519,9 +519,9 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/"               element={<HomePage />} />
-          <Route path="/teams/*"        element={<TeamsPage />} />
-          <Route path="/articles"       element={<ArticlesPage />} />
-          <Route path="/articles/:slug" element={<ArticlePage />} />
+          <Route path="/teams/"        element={<TeamsPage />} />
+          <Route path="/article"       element={<ArticlesPage />} />
+          <Route path="/article/:slug" element={<ArticlePage />} />
           <Route path="/history/*"      element={<HistoryPage />} />
         </Routes>
         <Footer />
